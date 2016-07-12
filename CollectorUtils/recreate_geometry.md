@@ -27,7 +27,7 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
     6. Output Features - The location of the output feature class
 5. Click Run
 
-![Alt text](/images/RecreateGeometry_interface.JPG "Interface")
+![Alt text](images/RecreateGeometry_interface.JPG "Interface")
 
 ### Using as a standalone script
 Run the [recreate_geometry.py](recreate_geometry.py) script in either Python 2.7+ or Python 3.4+

@@ -12,7 +12,7 @@ Four tools and corresponding scripts have been created to assist users with comm
  
 The tools have been combined into a single toolbox as shown below:
 
-![Alt text](/images/toolbox_view.JPG "CollectorUtils Toolbox")
+![Alt text](images/toolbox_view.JPG "CollectorUtils Toolbox")
 
 ----
 

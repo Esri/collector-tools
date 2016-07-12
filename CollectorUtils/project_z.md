@@ -29,7 +29,7 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
     8. Geographic Transformation - The transform to use when converting coordinates systems (updates when input feature class, input coordinate system, and output coordinate system are selected)
 5. Click Run
 
-![Alt text](/images/ProjectZ_interface.JPG "Interface")
+![Alt text](images/ProjectZ_interface.JPG "Interface")
 
 ### What it does
 1. Calls the [Recreate Geometry](recreate_geometry.md) tool to create a new feature class using the specified attributes as the geometry

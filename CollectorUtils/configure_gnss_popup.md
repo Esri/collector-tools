@@ -18,7 +18,7 @@ This tool changes the "visible" property of ESRIGNSS fields in the popup informa
     2. ID - The id of the webmap to update (e.g. (f1bad03e6fd74f45a4708d034bd847a4)
 5. Click Run
 
-![Alt text](/images/ConfigureGNSSPopup_interface.JPG "Interface")
+![Alt text](images/ConfigureGNSSPopup_interface.JPG "Interface")
 
 ### Using as a standalone script
 Two scripts are provided. The [configure_gnss_popup_arcrest.py](configure_gnss_popup_arcrest.py) script relies on the [ArcREST](https://github.com/Esri/ArcREST) library to send requests to Portal and AGOL. This allows organizations that use PKI, IWA/NTLM, and LDAP to authenticate properly. The [configure_gnss_popup.py](configure_gnss_popup.py) script only support the 'built-in' authentication but it is faster.

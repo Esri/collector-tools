@@ -28,7 +28,7 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 4. Select a Feature class (can also use feature service in ArcGIS Pro)
 5. Click Run
 
-![Alt text](/images/AddGNSSMetaData_interface.JPG "Interface")
+![Alt text](images/AddGNSSMetaData_interface.JPG "Interface")
 
 ###Using as a standalone script
 Run the [add_gnss_fields.py](add_gnss_fields.py) script in either Python 2.7+ or Python 3.4+ as:
