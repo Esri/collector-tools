@@ -1,31 +1,10 @@
-# CollectorUtils
-A collection of scripts and tools to perform collector specific tasks
+# collector-tools
+A collection of scripts and tools to perform collector specific tasks related to the collector mobile apps
 
-----
+## What's here
 
-Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
+ * [CollectorUtils](CollectorUtils) - A Toolbox and set of python scripts for collector related tasks and workflows
 
- - [Add GNSS Metadata Fields](add_gnss_fields.py) ([documentation](add_gnss_metadata_fields.md))
- - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
- - ProjectZ (Model Builder) ([documentation](project_z.md))
- - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
- 
-The tools have been combined into a single toolbox as shown below:
-
-![Alt text](/images/toolbox_view.JPG "CollectorUtils Toolbox")
-
-----
-
-## Dependencies
- - arcpy 10.4+ (Python 2.7.x) can use (3.4 with arcpy in ArcGIS Pro for some of the tools, not all supported)
- - [ArcREST 3.5.3+](https://github.com/Esri/ArcREST) (for alternative ArcRest scripts, not required for the toolbox)
-
-## Instructions
-
-1. Install [ArcREST](https://github.com/Esri/ArcREST) from source if you plan to use the scripts that rely on ArcREST (optional)
-2. Clone this repo or download as zip and extract
-3. In ArcMap connect to the folder containing the scripts. You should see a toolbox
-4. Run the tools in the toolbox or run the scripts from commandline
 
 ## Resources
 
