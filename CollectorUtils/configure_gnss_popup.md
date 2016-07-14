@@ -1,7 +1,7 @@
 # Configure GNSS Popup 
 Changes the visible properties of all ESRIGNSS related attributes in a web map
 
-Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.2+
+Supported in at least ArcGIS 10.3.x+
 
 This tool changes the "visible" property of ESRIGNSS fields in the popup information in the specified web map. It also updates the number of decimals displayed.
 
@@ -19,6 +19,49 @@ This tool changes the "visible" property of ESRIGNSS fields in the popup informa
 5. Click Run
 
 ![Alt text](images/ConfigureGNSSPopup_interface.JPG "Interface")
+
+### Re-building the toolbox (for versions lower than 10.4)
+1. Create a new toolbox (if you don't already have one)
+2. Add the configure_gnss_popup.py as a script
+3. Set the parameters as follows:
+
+    | Display Name | Data Type | Type     | Direction | Filter |
+    |--------------|-----------|----------|-----------|--------|
+    | Map ID       | String    | Required | Input     | None   |
+    | Visible      | Boolean   | Requried | Input     | None   |
+
+4. Update the validation logic to make sure you are signed into ArcGIS online or a Portal
+
+```python
+    import arcpy
+    class ToolValidator(object):
+      """Class for validating a tool's parameter values and controlling
+      the behavior of the tool's dialog."""
+    
+      def __init__(self):
+        """Setup arcpy and the list of tool parameters."""
+        self.params = arcpy.GetParameterInfo()
+    
+      def initializeParameters(self):
+        """Refine the properties of a tool's parameters.  This method is
+        called when the tool is opened."""
+        return
+    
+      def updateParameters(self):
+        """Modify the values and properties of parameters before internal
+        validation is performed.  This method is called whenever a parameter
+        has been changed."""
+        return
+    
+      def updateMessages(self):
+        """Modify the messages created by internal validation for each tool
+        parameter.  This method is called after internal validation."""
+        if not arcpy.GetSigninToken():
+          self.params[0].setErrorMessage("You are currently not signed into a Portal or AGOL Organization.")
+        else:
+          self.params[0].clearMessage()
+        return
+```
 
 ### Using as a standalone script
 Two scripts are provided. The [configure_gnss_popup_arcrest.py](configure_gnss_popup_arcrest.py) script relies on the [ArcREST](https://github.com/Esri/ArcREST) library to send requests to Portal and AGOL. This allows organizations that use PKI, IWA/NTLM, and LDAP to authenticate properly. The [configure_gnss_popup.py](configure_gnss_popup.py) script only support the 'built-in' authentication but it is faster.
@@ -53,5 +96,5 @@ python configure_gnss_popup.py -u mycoolusername -p myevencoolerpassword -url "h
 1. Authenticates with Portal/AGOL and gets a token
 2. Gets the specified web map item
 3. Gets the data of the web map (json)
-4. Updates the "visible" parameter of the popup info json (ESRIGNSS fields only)
+4. Updates the "visible" parameter of the popup info json (ESRIGNSS fields only) and sets the displayed decimal places.
 5. Submits edits to Portal/AGOL

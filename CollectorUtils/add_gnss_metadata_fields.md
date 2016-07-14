@@ -30,6 +30,65 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 
 ![Alt text](images/AddGNSSMetaData_interface.JPG "Interface")
 
+### Re-building the toolbox (for versions lower than 10.4)
+1. Create a new toolbox (if you don't already have one)
+2. Add the add_gnss_fields.py as a script
+3. Set the parameters as follows:
+
+    | Display Name        | Data Type     | Type     | Direction | Filter                |
+    |---------------------|---------------|----------|-----------|-----------------------|
+    | Input Feature Class | Feature Class | Required | Input     | Feature Class (Point) |
+
+4. Update the validation logic to check that the fields don't exist (shown below)
+
+```python
+    import arcpy
+    class ToolValidator(object):
+      """Class for validating a tool's parameter values and controlling
+      the behavior of the tool's dialog."""
+    
+      def __init__(self):
+        """Setup arcpy and the list of tool parameters."""
+        self.params = arcpy.GetParameterInfo()
+    
+      def initializeParameters(self):
+        """Refine the properties of a tool's parameters.  This method is
+        called when the tool is opened."""
+        return
+    
+      def updateParameters(self):
+        """Modify the values and properties of parameters before internal
+        validation is performed.  This method is called whenever a parameter
+        has been changed."""
+        return
+    
+      def updateMessages(self):
+        if self.params[0].value is not None:
+          fields_to_add = ['ESRIGNSS_RECEIVER',
+                               'ESRIGNSS_H_RMS',
+                               'ESRIGNSS_V_RMS',
+                               'ESRIGNSS_LATITUDE',
+                               'ESRIGNSS_LONGITUDE',
+                               'ESRIGNSS_ALTITUDE',
+                               'ESRIGNSS_PDOP',
+                               'ESRIGNSS_HDOP',
+                               'ESRIGNSS_VDOP',
+                               'ESRIGNSS_FIXTYPE',
+                               'ESRIGNSS_NUMSATS',
+                               'ESRIGNSS_FIXDATETIME']
+          existing_fields = arcpy.ListFields(self.params[0].valueAsText)
+          fields = []
+          for field in existing_fields:
+              if field.name in fields_to_add:
+                  fields.append(field.name)
+          if fields != []:
+            self.params[0].setErrorMessage("{} fields already exists!".format(",".join(["'{}'".format(field) for field in fields])))
+          else:
+            self.params[0].clearMessage()
+        return
+```
+
+
 ###Using as a standalone script
 Run the [add_gnss_fields.py](add_gnss_fields.py) script in either Python 2.7+ or Python 3.4+ as:
 ```

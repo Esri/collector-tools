@@ -17,7 +17,7 @@ The tools have been combined into a single toolbox as shown below:
 ----
 
 ## Dependencies
- - arcpy 10.4+ (Python 2.7.x) can use (3.4 with arcpy in ArcGIS Pro for some of the tools, not all supported)
+ - arcpy 10.4+ (Python 2.7.x) can use (3.4+ with arcpy in ArcGIS Pro for some of the tools, not all supported)
  - [ArcREST 3.5.3+](https://github.com/Esri/ArcREST) (for alternative ArcRest scripts, not required for the toolbox)
 
 ## Instructions
@@ -25,7 +25,9 @@ The tools have been combined into a single toolbox as shown below:
 1. Install [ArcREST](https://github.com/Esri/ArcREST) from source if you plan to use the scripts that rely on ArcREST (optional)
 2. Clone this repo or download as zip and extract
 3. In ArcMap connect to the folder containing the scripts. You should see a toolbox
-4. Run the tools in the toolbox or run the scripts from commandline
+4. Run the tools in the toolbox (requires ArcGIS 10.4+) or run the scripts from commandline
+
+If you wish to use the toolbox in a version lower than 10.4, you can rebuild the toolbox in ArcGIS Desktop 10.x by creating a new toolbox, adding a script tool to it, and specifying the required parameters. Details can be seen in the documentation for each tool. Details on building script tools can be found [here.](http://desktop.arcgis.com/en/arcmap/latest/analyze/creating-tools/a-quick-tour-of-creating-tools-in-python.htm).
 
 ## Resources
 

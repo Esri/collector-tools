@@ -31,6 +31,10 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
 
 ![Alt text](images/ProjectZ_interface.JPG "Interface")
 
+### Re-building the toolbox (for versions lower than 10.4)
+
+**This tool (model) relies on vertical transformations which is only available at 10.4+** 
+
 ### What it does
 1. Calls the [Recreate Geometry](recreate_geometry.md) tool to create a new feature class using the specified attributes as the geometry
 2. Projects the new feature class to the desired projection
