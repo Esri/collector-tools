@@ -27,7 +27,7 @@ The tools have been combined into a single toolbox as shown below:
 3. In ArcMap connect to the folder containing the scripts. You should see a toolbox
 4. Run the tools in the toolbox (requires ArcGIS 10.4+) or run the scripts from commandline
 
-If you wish to use the toolbox in a version lower than 10.4, you can rebuild the toolbox in ArcGIS Desktop 10.x by creating a new toolbox, adding a script tool to it, and specifying the required parameters. Details can be seen in the documentation for each tool. Details on building script tools can be found [here.](http://desktop.arcgis.com/en/arcmap/latest/analyze/creating-tools/a-quick-tour-of-creating-tools-in-python.htm).
+If you wish to use the toolbox in a version lower than 10.4, you can rebuild the toolbox in ArcGIS Desktop 10.x by creating a new toolbox, adding a script tool to it, and specifying the required parameters. Details can be seen in the documentation for each tool. Details on building script tools can be found [here.](http://desktop.arcgis.com/en/arcmap/latest/analyze/creating-tools/a-quick-tour-of-creating-tools-in-python.htm)
 
 ## Resources
 
