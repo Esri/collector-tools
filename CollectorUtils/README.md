@@ -10,7 +10,7 @@ Four tools and corresponding scripts have been created to assist users with comm
  - ProjectZ (Model Builder) ([documentation](project_z.md))
  - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
  
-The tools have been combined into a single toolbox as shown below:
+The tools have been combined into a single toolbox (10.4 version) as shown below:
 
 ![Alt text](images/toolbox_view.JPG "CollectorUtils Toolbox")
 
