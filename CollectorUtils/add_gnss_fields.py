@@ -96,6 +96,24 @@ def check_and_create_domains(geodatabase):
                                       split_policy="DEFAULT",
                                       merge_policy="DEFAULT")
         arcpy.SetValueForRangeDomain_management(geodatabase, "ESRI_NUM_SATS_DOMAIN", 0, 99)
+    # Check if 'StationID" is a domain, if so check the range
+    if 'ESRI_STATION_ID_DOMAIN' in domain_names:
+        if domain.name == "ESRI_STATION_ID_DOMAIN":
+            if domain.range[0] != 0 or domain.range[1] != 1023:
+                arcpy.AddError("ESRI_NUM_SATS_DOMAIN domain has invalid range")
+                return
+    else:
+        # Add the domain and set the range
+        arcpy.AddMessage("Adding ESRI_STATION_ID_DOMAIN to parent database...")
+        arcpy.CreateDomain_management(in_workspace=geodatabase,
+                                      domain_name="ESRI_STATION_ID_DOMAIN",
+                                      domain_description="Station ID",
+                                      field_type="SHORT",
+                                      domain_type="RANGE",
+                                      split_policy="DEFAULT",
+                                      merge_policy="DEFAULT")
+        arcpy.SetValueForRangeDomain_management(geodatabase, "ESRI_STATION_ID_DOMAIN", 0, 1023)
+
 
 def add_gnss_fields(feature_layer):
     """
@@ -139,6 +157,8 @@ def add_gnss_fields(feature_layer):
                          'ESRIGNSS_HDOP',
                          'ESRIGNSS_VDOP',
                          'ESRIGNSS_FIXTYPE',
+                         'ESRIGNSS_CORRECTIONAGE',
+                         'ESRIGNSS_STATIONID',
                          'ESRIGNSS_NUMSATS',
                          'ESRIGNSS_FIXDATETIME']
         existing_fields = arcpy.ListFields(feature_layer)
@@ -218,6 +238,19 @@ def add_gnss_fields(feature_layer):
                                   field_alias='Fix Type',
                                   field_is_nullable="NULLABLE",
                                   field_domain = "ESRI_FIX_TYPE_DOMAIN"
+                                  )
+        arcpy.AddField_management(feature_layer,
+                                  'ESRIGNSS_CORRECTIONAGE',
+                                  field_type="DOUBLE",
+                                  field_alias='Correction Age',
+                                  field_is_nullable="NULLABLE"
+                                  )
+        arcpy.AddField_management(feature_layer,
+                                  'ESRIGNSS_STATIONID',
+                                  field_type="SHORT",
+                                  field_alias='Station ID',
+                                  field_is_nullable="NULLABLE",
+                                  field_domain = "ESRI_STATION_ID_DOMAIN"
                                   )
         arcpy.AddField_management(feature_layer,
                                   'ESRIGNSS_NUMSATS',
