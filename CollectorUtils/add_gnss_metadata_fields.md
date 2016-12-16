@@ -17,6 +17,8 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 | HDOP                 | HDOP                    | ESRIGNSS_HDOP        | double      |                      |                                                                                          |
 | VDOP                 | VDOP                    | ESRIGNSS_VDOP        | double      |                      |                                                                                          |
 | Fix Type             | Fix Type                | ESRIGNSS_FIXTYPE     | short       | ESRI_FIX_TYPE_DOMAIN |  0 - Fix not valid; 1 - GPS; 2 - Differential GPS; 4 - RTK Fixed; 5 - RTK Float |
+| Correction Age       | Correction Age          | ESRIGNSS_CORRECTIONAGE| double      |                      |                                                                                          |
+| Station ID           | Station ID              | ESRIGNSS_STATIONID   | short      | ESRI_STATION_ID_DOMAIN| Range 0-1023                                                                                      |                                             
 | Number of Satellites | Number of Satellites    | ESRIGNSS_NUMSATS     | short       | ESRI_NUM_SATS_DOMAIN | Range 0-99                                                                               |
 | Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                      | UTC                                                                                      |
 
@@ -74,6 +76,8 @@ This script/tool attempts to add the following fields to a Point Feature Class:
                                'ESRIGNSS_HDOP',
                                'ESRIGNSS_VDOP',
                                'ESRIGNSS_FIXTYPE',
+                               'ESRIGNSS_CORRECTIONAGE',
+                               'ESRIGNSS_STATIONID',
                                'ESRIGNSS_NUMSATS',
                                'ESRIGNSS_FIXDATETIME']
           existing_fields = arcpy.ListFields(self.params[0].valueAsText)
