@@ -88,6 +88,8 @@ def configure_gnss_popup(map_data, visible=False):
                         'ESRIGNSS_HDOP',
                         'ESRIGNSS_VDOP',
                         'ESRIGNSS_FIXTYPE',
+                        'ESRIGNSS_CORRECTIONAGE',
+                        'ESRIGNSS_STATIONID',
                         'ESRIGNSS_NUMSATS',
                         'ESRIGNSS_FIXDATETIME']
     for operational_layer in map_data["operationalLayers"]:
@@ -113,6 +115,8 @@ def configure_gnss_popup(map_data, visible=False):
                     field_info["format"]["places"] = 2
                 if field_info["fieldName"].upper() == 'ESRIGNSS_VDOP':
                     field_info["format"]["places"] = 2
+                if field_info["fieldName"].upper() == 'ESRIGNSS_CORRECTIONAGE':
+                    field_info["format"]["places"] = 0
                 if field_info["fieldName"].upper() == 'ESRIGNSS_FIXDATETIME':
                     field_info["format"]["dateFormat"] = "shortDateShortTime"
                     field_info["format"]["timezone"] = "utc"
