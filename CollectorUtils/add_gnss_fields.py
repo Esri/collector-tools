@@ -100,7 +100,7 @@ def check_and_create_domains(geodatabase):
     if 'ESRI_STATION_ID_DOMAIN' in domain_names:
         if domain.name == "ESRI_STATION_ID_DOMAIN":
             if domain.range[0] != 0 or domain.range[1] != 1023:
-                arcpy.AddError("ESRI_NUM_SATS_DOMAIN domain has invalid range")
+                arcpy.AddError("ESRI_STATION_ID_DOMAIN domain has invalid range")
                 return
     else:
         # Add the domain and set the range
