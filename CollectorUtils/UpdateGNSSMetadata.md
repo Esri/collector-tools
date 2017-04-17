@@ -1,5 +1,22 @@
 # UpdateGNSSMetadata
-Python script to update GNSS metadata fields
+Python script to update GNSS metadata fields 
+
+Metadata Fields
+1. ESRIGNSS_FIXDATETIME
+2. ESRIGNSS_RECEIVER
+3. ESRIGNSS_H_RMS
+4. ESRIGNSS_V_RMS
+5. ESRIGNSS_LATITUDE
+6. ESRIGNSS_LONGITUDE
+7. ESRIGNSS_ALTITUDE
+8. ESRIGNSS_PDOP
+9. ESRIGNSS_HDOP
+10. ESRIGNSS_VDOP
+11. ESRIGNSS_CORRECTIONAGE
+12. ESRIGNSS_FIXTYPE
+13. ESRIGNSS_STATIONID
+14. ESRIGNSS_NUMSATS
+
 
 Intructions to run the script.
 1. Install ArcGIS API for Python using Conda (https://developers.arcgis.com/python/guide/install-and-set-up/).
@@ -14,13 +31,15 @@ Intructions to run the script.
 
 5. Script usage help. Information on required and optional parameters can be obatined via -h flag
 
-![image](https://cloud.githubusercontent.com/assets/26557666/24468620/af038134-146d-11e7-9188-9635e9b4c407.png)
+![image](https://cloud.githubusercontent.com/assets/26557666/25095134/2598c5b2-234f-11e7-85d2-90134e827e0e.png)
+
 
 
 
 6. Run the script with the required arguments 
 
-![image](https://cloud.githubusercontent.com/assets/26557666/24468810/50a42264-146e-11e7-93c3-6bc4f8f92603.png)
+
+![image](https://cloud.githubusercontent.com/assets/26557666/25095477/bed04da8-2350-11e7-8aef-b22f876af2f7.png)
 
 
 
