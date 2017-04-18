@@ -16,9 +16,14 @@ The tools have been combined into a single toolbox (10.4 version) as shown below
 
 ----
 
+Some additional tools are available as standalone scripts:
+- [Reset Required Fields (Pure Python)](reset_required_fields.py), [Reset Required Fields (ArcREST)](reset_required_fields_arcrest.py) ([documentation](ResetRequiredFields.md))
+- [Update GNSS Metadata (ArcGIS API for Python)](UpdateGNSSSMetadata.py) ([documentation](UpdateGNSSMetadata.md))
+
 ## Dependencies
  - arcpy 10.4+ (Python 2.7.x) can use (3.4+ with arcpy in ArcGIS Pro for some of the tools, not all supported)
  - [ArcREST 3.5.3+](https://github.com/Esri/ArcREST) (for alternative ArcRest scripts, not required for the toolbox)
+ - [ArcGIS API for Python](https://developers.arcgis.com/python/) (for Update GNSS Metadata script, not required for the toolbox)
 
 ## Instructions
 
