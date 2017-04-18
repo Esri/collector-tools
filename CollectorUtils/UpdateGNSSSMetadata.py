@@ -13,9 +13,6 @@
 
 import argparse
 import sys
-import urllib
-import urllib.parse
-import urllib.request
 import json
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection
@@ -55,7 +52,9 @@ def searchItems_addGNSSMetadataFields(args_parser):
             # Extract fields from Feature layer service definition
             featureLayerFields = featureLayerCollection.manager.layers[args_parser.layerIndex].properties['fields'] if args_parser.layerIndex else \
                                  featureLayerCollection.manager.layers[0].properties['fields']                                 
-            
+
+            # Feature Layer index
+            featureLayerIndex = args_parser.layerIndex if args_parser.layerIndex else 0
             
             # New fields which need to be added
             gnssMetadataFields = {'fields': []}
@@ -327,16 +326,16 @@ def searchItems_addGNSSMetadataFields(args_parser):
 
                 # Add
                 if operation == 'addToDefinition':
-                    response = featureLayerCollection.manager.layers[0].add_to_definition(gnssMetadataFields)                                       
+                    response = featureLayerCollection.manager.layers[featureLayerIndex].add_to_definition(gnssMetadataFields)                                       
 
                 # Delete
                 elif operation == 'deleteFromDefinition':
-                    response = featureLayerCollection.manager.layers[0].delete_from_definition(gnssMetadataFields)
+                    response = featureLayerCollection.manager.layers[featureLayerIndex].delete_from_definition(gnssMetadataFields)
                     
                 
                 # Modify
                 else:
-                    response = featureLayerCollection.manager.layers[0].update_definition(featureLayerFields)
+                    response = featureLayerCollection.manager.layers[featureLayerIndex].update_definition(featureLayerFields)
 
                 result = response['success']
                                 
