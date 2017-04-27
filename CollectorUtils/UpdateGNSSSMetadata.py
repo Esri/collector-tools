@@ -209,6 +209,63 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                          'editable': True,
                                                          'domain': None,
                                                          'defaultValue': None})
+                
+                # ESRIGNSS_AVG_H_RMS
+                averageHorizontalAccuracyField = [field for field in featureLayerFields if
+                                      field['name'] == 'ESRIGNSS_AVG_H_RMS']
+
+                if not averageHorizontalAccuracyField:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_AVG_H_RMS',
+                                                         'type': 'esriFieldTypeDouble',
+                                                         'alias': 'Average Horizontal Accuracy (m)',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': None,
+                                                         'defaultValue': None})
+                    
+                # ESRIGNSS_AVG_V_RMS
+                averageVerticalAccuracyField = [field for field in featureLayerFields if
+                                      field['name'] == 'ESRIGNSS_AVG_V_RMS']
+
+                if not averageVerticalAccuracyField:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_AVG_V_RMS',
+                                                         'type': 'esriFieldTypeDouble',
+                                                         'alias': 'Average Vertical Accuracy (m)',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': None,
+                                                         'defaultValue': None})
+
+                # ESRIGNSS_AVG_POSITIONS
+                averagePositionsField = [field for field in featureLayerFields if
+                                      field['name'] == 'ESRIGNSS_AVG_POSITIONS']
+
+                if not averagePositionsField:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_AVG_POSITIONS',
+                                                         'type': 'esriFieldTypeSmallInteger',
+                                                         'alias': 'Number of positions averaged',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': None,
+                                                         'defaultValue': None})
+
+                # ESRIGNSS_H_STDDEV"
+                standardDeviationField = [field for field in featureLayerFields if
+                                      field['name'] == 'ESRIGNSS_H_STDDEV']
+
+                if not standardDeviationField:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_H_STDDEV',
+                                                         'type': 'esriFieldTypeDouble',
+                                                         'alias': 'Standard deviation',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': None,
+                                                         'defaultValue': None})
+                
 
                 # ESRIGNSS_FIXTYPE
                 fixTypeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXTYPE']
@@ -319,6 +376,10 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                {'name': 'ESRIGNSS_CORRECTIONAGE'},
                                {'name': 'ESRIGNSS_FIXTYPE'},
                                {'name': 'ESRIGNSS_STATIONID'},
+                               {'name': 'ESRIGNSS_AVG_H_RMS'},
+                               {'name': 'ESRIGNSS_AVG_V_RMS'},
+                               {'name': 'ESRIGNSS_AVG_POSITIONS'},
+                               {'name': 'ESRIGNSS_H_STDDEV'},
                                {'name': 'ESRIGNSS_NUMSATS'}]}
             
             # Add/Delete/Modify service definition.
