@@ -244,8 +244,8 @@ def searchItems_addGNSSMetadataFields(args_parser):
 
                 if not averagePositionsField:
                     gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_AVG_POSITIONS',
-                                                         'type': 'esriFieldTypeSmallInteger',
-                                                         'alias': 'Number of positions averaged',
+                                                         'type': 'esriFieldTypeInteger',
+                                                         'alias': 'Averaged Positions',
                                                          'sqlType': 'sqlTypeOther',
                                                          'nullable': True,
                                                          'editable': True,
