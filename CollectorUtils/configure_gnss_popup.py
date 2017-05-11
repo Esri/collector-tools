@@ -120,6 +120,12 @@ def configure_gnss_popup(map_data, visible=False):
                 if field_info["fieldName"].upper() == 'ESRIGNSS_FIXDATETIME':
                     field_info["format"]["dateFormat"] = "shortDateShortTime"
                     field_info["format"]["timezone"] = "utc"
+                if field_info["fieldName"].upper() == 'ESRIGNSS_AVG_H_RMS':
+                    field_info["format"]["places"] = 2
+                if field_info["fieldName"].upper() == 'ESRIGNSS_AVG_V_RMS':
+                    field_info["format"]["places"] = 2
+                if field_info["fieldName"].upper() == 'ESRIGNSS_H_STDDEV':
+                    field_info["format"]["places"] = 3
     return map_data
 
 
