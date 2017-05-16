@@ -35,7 +35,7 @@ Intructions to run the script.
 
 5. Script usage help. Information on required and optional parameters can be obatined via -h flag
 
-![image](https://cloud.githubusercontent.com/assets/26557666/25095134/2598c5b2-234f-11e7-85d2-90134e827e0e.png)
+![image](https://cloud.githubusercontent.com/assets/26557666/26121407/f2914fa4-3a28-11e7-9530-f902cb8694c4.png)
 
 
 
@@ -43,7 +43,12 @@ Intructions to run the script.
 6. Run the script with the required arguments 
 
 
-![image](https://cloud.githubusercontent.com/assets/26557666/25095477/bed04da8-2350-11e7-8aef-b22f876af2f7.png)
+![image](https://cloud.githubusercontent.com/assets/26557666/26121496/4f46797c-3a29-11e7-8ca4-ac99efc19349.png)
+
+
+7. Running the script from within ArcGIS Pro python environment
+
+![image](https://cloud.githubusercontent.com/assets/26557666/26121705/00dd986e-3a2a-11e7-8439-cbe82c732d96.png)
 
 
 
