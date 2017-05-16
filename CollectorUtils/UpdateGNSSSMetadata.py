@@ -28,7 +28,7 @@ def parseArguments():
     parser.add_argument('-url', '--url', required=True, type=str, help='Organization url')
     parser.add_argument('-r', '--remove', default=False, type=bool,
                         help='Set True if GNSS metadata fields need to be removed')
-    parser.add_argument('itemId', type=str, nargs="+", help='Search string')
+    parser.add_argument('itemId', type=str, nargs="+", help='Feature service Item Id')
     parser.add_argument('-index','--layerIndex', type=int, help='Feature Layer index. If not specified use 0 as index')
     args_parser = parser.parse_args()
     return args_parser
@@ -44,15 +44,17 @@ def searchItems_addGNSSMetadataFields(args_parser):
     try:
         # Iterate through each ItemId and update the domain values
         for id in itemId:
-            featurelayerItem = gis.content.search(id)
-            
-            # Construct a FeatureLayerCollection from the portal item.
-            featureLayerCollection = FeatureLayerCollection.fromitem(featurelayerItem[0])
 
+            featureLayerItem = gis.content.get(id)
+
+            # Construct a FeatureLayerCollection from the portal item.
+            featureLayerCollection = FeatureLayerCollection.fromitem(featureLayerItem)
+            
+            
             # Extract fields from Feature layer service definition
             featureLayerFields = featureLayerCollection.manager.layers[args_parser.layerIndex].properties['fields'] if args_parser.layerIndex else \
-                                 featureLayerCollection.manager.layers[0].properties['fields']                                 
-
+                                 featureLayerCollection.manager.layers[0].properties['fields']
+            
             # Feature Layer index
             featureLayerIndex = args_parser.layerIndex if args_parser.layerIndex else 0
             
