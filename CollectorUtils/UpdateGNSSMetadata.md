@@ -43,7 +43,7 @@ Intructions to run the script.
 6. Run the script with the required arguments 
 
 
-![image](https://cloud.githubusercontent.com/assets/26557666/25095477/bed04da8-2350-11e7-8aef-b22f876af2f7.png)
+![image](https://cloud.githubusercontent.com/assets/26557666/26121496/4f46797c-3a29-11e7-8ca4-ac99efc19349.png)
 
 
 
