@@ -46,4 +46,7 @@ Intructions to run the script.
 ![image](https://cloud.githubusercontent.com/assets/26557666/26121496/4f46797c-3a29-11e7-8ca4-ac99efc19349.png)
 
 
+7. Running the script from within ArcGIS Pro python environment
+
+
 
