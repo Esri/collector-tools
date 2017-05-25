@@ -349,7 +349,7 @@ def searchItems_addGNSSMetadataFields(args_parser):
                 if not standardDeviationField:
                     gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_H_STDDEV',
                                                          'type': 'esriFieldTypeDouble',
-                                                         'alias': 'Standard deviation',
+                                                         'alias': 'Standard Deviation',
                                                          'sqlType': 'sqlTypeOther',
                                                          'nullable': True,
                                                          'editable': True,

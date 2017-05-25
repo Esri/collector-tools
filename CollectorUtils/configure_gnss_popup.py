@@ -91,7 +91,10 @@ def configure_gnss_popup(map_data, visible=False):
                         'ESRIGNSS_CORRECTIONAGE',
                         'ESRIGNSS_STATIONID',
                         'ESRIGNSS_NUMSATS',
-                        'ESRIGNSS_FIXDATETIME']
+                        'ESRIGNSS_FIXDATETIME',
+                        'ESRIGNSS_AVG_H_RMS',
+                        'ESRIGNSS_AVG_V_RMS',
+                        'ESRIGNSS_H_STDDEV']
     for operational_layer in map_data["operationalLayers"]:
         if "popupInfo" in operational_layer and "fieldInfos" in operational_layer["popupInfo"]:
             for field_info in operational_layer["popupInfo"]["fieldInfos"]:
