@@ -26,7 +26,7 @@ def parseArguments():
     parser.add_argument('-u', '--username', required=True, type=str, help='Organization username')
     parser.add_argument('-p', '--password', required=True, type=str, help='Organization password')
     parser.add_argument('-url', '--url', required=True, type=str, help='Organization url')    
-    parser.add_argument('Webmap Name', type=str, nargs="+", help='Webmap Name')
+    parser.add_argument('webmap_Name', type=str, nargs="+", help='Webmap Name')
     parser.add_argument('-index','--layerIndex', type=int, help='Feature Layer index. If not specified use 0 as index')
     args_parser = parser.parse_args()
     return args_parser
@@ -37,7 +37,7 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
     
     # Search ItemIds
     gis = GIS(args_parser.url, args_parser.username, args_parser.password)
-    itemId = args_parser.itemId
+    itemId = args_parser.webmap_Name
 
     try:
         # Iterate through each ItemId and update the popup info for the specified feature layer
