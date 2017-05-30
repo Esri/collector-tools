@@ -107,6 +107,7 @@ def configure_gnss_popup(map_data, visible=False):
                 # Set all fields as visible/editable
                 if field_info["fieldName"] in fields_to_update:
                     field_info["visible"] = visible
+                    field_info['isEditable'] = False
                 # Format specific fields
                 if field_info["fieldName"] == 'ESRIGNSS_H_RMS':
                     field_info["format"]["places"] = 2

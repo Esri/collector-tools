@@ -57,55 +57,68 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
                 if field_info['fieldName'].upper() == 'ESRIGNSS_H_RMS':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_V_RMS':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_LATITUDE':
                     field_info['format']['places'] = 8
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_LONGITUDE':
                     field_info['format']['places'] = 8
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_ALTITUDE':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_PDOP':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_HDOP':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_VDOP':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_CORRECTIONAGE':
                     field_info['format']['places'] = 0
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_FIXDATETIME':
                     field_info['format']['dateFormat'] = 'shortDateShortTime'
                     field_info['format']['timezone'] = 'utc'
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_AVG_H_RMS':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_AVG_V_RMS':
                     field_info['format']['places'] = 2
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
                     
                 if field_info['fieldName'].upper() == 'ESRIGNSS_H_STDDEV':
                     field_info['format']['places'] = 3
                     field_info['visible'] = True
+                    field_info['isEditable'] = False
 
             # Set Webmap fieldInfos property
             if args_parser.layerIndex:
