@@ -120,6 +120,12 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
                     field_info['visible'] = True
                     field_info['isEditable'] = False
 
+                if field_info['fieldName'].upper() == 'ESRIGNSS_RECEIVER' or  field_info['fieldName'].upper() == 'ESRIGNSS_STATIONID' or \
+                   field_info['fieldName'].upper() == 'ESRIGNSS_FIXTYPE' or field_info['fieldName'].upper() == 'ESRIGNSS_NUMSATS' or \
+                   field_info['fieldName'].upper() == 'ESRIGNSS_AVG_POSITIONS':
+                    field_info['visible'] = True
+                    field_info['isEditable'] = False
+
             # Set Webmap fieldInfos property
             if args_parser.layerIndex:
                 webmap['operationalLayers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
