@@ -47,7 +47,7 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
 
             # create a Webmap object from the search result
             webmap = arcgis.mapping.WebMap(webmapItem[0])
-            
+                        
             # Configure popup and set visibility on the GNSSMetadata fields.
             fieldInfos = webmap['operationalLayers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] if args_parser.layerIndex else \
                                  webmap['operationalLayers'][0]['popupInfo']['fieldInfos']
