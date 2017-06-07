@@ -28,7 +28,7 @@ def parseArguments():
     parser.add_argument('-url', '--url', required=True, type=str, help='Organization url')
     parser.add_argument('-r', '--remove', default=False, type=bool,
                         help='Set True if GNSS metadata fields need to be removed')
-    parser.add_argument('itemId', type=str, nargs="+", help='Search string')
+    parser.add_argument('itemId', type=str, nargs="+", help='Feature service Item Id')
     parser.add_argument('-index','--layerIndex', type=int, help='Feature Layer index. If not specified use 0 as index')
     args_parser = parser.parse_args()
     return args_parser
@@ -44,15 +44,17 @@ def searchItems_addGNSSMetadataFields(args_parser):
     try:
         # Iterate through each ItemId and update the domain values
         for id in itemId:
-            featurelayerItem = gis.content.search(id)
-            
-            # Construct a FeatureLayerCollection from the portal item.
-            featureLayerCollection = FeatureLayerCollection.fromitem(featurelayerItem[0])
 
+            featureLayerItem = gis.content.get(id)
+
+            # Construct a FeatureLayerCollection from the portal item.
+            featureLayerCollection = FeatureLayerCollection.fromitem(featureLayerItem)
+            
+            
             # Extract fields from Feature layer service definition
             featureLayerFields = featureLayerCollection.manager.layers[args_parser.layerIndex].properties['fields'] if args_parser.layerIndex else \
-                                 featureLayerCollection.manager.layers[0].properties['fields']                                 
-
+                                 featureLayerCollection.manager.layers[0].properties['fields']
+            
             # Feature Layer index
             featureLayerIndex = args_parser.layerIndex if args_parser.layerIndex else 0
             
@@ -63,23 +65,8 @@ def searchItems_addGNSSMetadataFields(args_parser):
             operations = []
 
             # Add/Update GNSS Metadata fields
-            if not args_parser.remove:                
-
-                # ESRIGNSS_FIXDATETIME
-                fixTimeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXDATETIME']
-
-                if not fixTimeField:
-                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_FIXDATETIME',
-                                                         'type': 'esriFieldTypeDate',
-                                                         'alias': 'Fix Time',
-                                                         'sqlType': 'sqlTypeOther',
-                                                         'length': 0,
-                                                         'nullable': True,
-                                                         'editable': True,
-                                                         'domain': None,
-                                                         'defaultValue': None})
+            if not args_parser.remove:
                 
-
                 # ESRIGNSS_RECEIVER
                 recieverField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_RECEIVER']               
 
@@ -196,6 +183,42 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                          'domain': None,
                                                          'defaultValue': None})
 
+                # ESRIGNSS_FIXTYPE
+                fixTypeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXTYPE']
+
+                if fixTypeField:
+                    # Field does exist check if the domain is set.
+                    if fixTypeField[0]['domain'] == None:
+                        if ([operation for operation in operations if operation == 'updateDefinition']):
+                            operations.append('updateDefinition')
+
+                        fixtypeFieldIndex = featureLayerFields.index(fixTypeField[0])
+                        fixTypeDomain = {'type': 'codedValue',
+                                         'name': 'ESRI_FIX_TYPE_DOMAIN',
+                                         'codedValues': [{'name': 'Fix not valid',
+                                                          'code': 0},
+                                                         {'name': 'GPS', 'code': 1},
+                                                         {'name': 'Differential GPS', 'code': 2},
+                                                         {'name': 'RTK Fixed', 'code': 4},
+                                                         {'name': 'RTK Float', 'code': 5}]}
+                        featureLayerFields[fixtypeFieldIndex]['domain'] = fixTypeDomain
+                    
+                else:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_FIXTYPE',
+                                                         'type': 'esriFieldTypeInteger',
+                                                         'alias': 'Fix Type',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': {'type': 'codedValue',
+                                                                    'name': 'ESRI_FIX_TYPE_DOMAIN',
+                                                                    'codedValues': [{'name': 'Fix not valid', 'code': 0},
+                                                                                    {'name': 'GPS', 'code': 1},
+                                                                                    {'name': 'Differential GPS', 'code': 2},
+                                                                                    {'name': 'RTK Fixed', 'code': 4},
+                                                                                    {'name': 'RTK Float', 'code': 5}]},
+                                                         'defaultValue': None})
+
                 # ESRIGNSS_CORRECTIONAGE
                 correctionAgeField = [field for field in featureLayerFields if
                                       field['name'] == 'ESRIGNSS_CORRECTIONAGE']
@@ -205,6 +228,73 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                          'type': 'esriFieldTypeDouble',
                                                          'alias': 'Correction Age',
                                                          'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': None,
+                                                         'defaultValue': None})
+
+                # ESRIGNSS_STATIONID
+                stationIdField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_STATIONID']
+
+                if stationIdField:
+                    # Field does exist check if the domain is set.
+                    if stationIdField[0]['domain'] == None:
+                        if ([operation for operation in operations if operation == 'updateDefinition']):
+                            operations.append('updateDefinition')
+                        stationIdFieldIndex = featureLayerFields.index(stationIdField[0])
+                        stationIdDomain = {'type': 'range',
+                                           'name': 'ESRI_STATION_ID_DOMAIN',
+                                           'range': [0, 1023]}
+                        featureLayerFields[stationIdFieldIndex]['domain'] = stationIdDomain
+
+                else:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_STATIONID',
+                                                         'type': 'esriFieldTypeInteger',
+                                                         'alias': 'Station ID',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': {'type': 'range',
+                                                                    'name': 'ESRI_STATION_ID_DOMAIN',
+                                                                    'range': [0, 1023]},
+                                                         'defaultValue': None})
+                
+
+                # ESRIGNSS_NUMSATS
+                numstatsField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_NUMSATS']
+
+                if numstatsField:
+                    # Field does exist check if the domain is set.
+                    if numstatsField[0]['domain'] == None:
+                        if ([operation for operation in operations if operation == 'updateDefinition']):
+                            operations.append('updateDefinition')
+                        numSatellitesFieldIndex = featureLayerFields.index(numstatsField[0])
+                        numSatellitesDomain = {'type': 'range',
+                                               'name': 'ESRI_NUM_SATS_DOMAIN',
+                                               'range': [0, 99]}
+                        featureLayerFields[numSatellitesFieldIndex]['domain'] = numSatellitesDomain
+
+                else:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_NUMSATS',
+                                                         'type': 'esriFieldTypeInteger',
+                                                         'alias': 'Number of Satellites',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'nullable': True,
+                                                         'editable': True,
+                                                         'domain': {'type': 'range',
+                                                                    'name': 'ESRI_NUM_SATS_DOMAIN',
+                                                                    'range': [0, 99]},
+                                                         'defaultValue': None})
+
+                # ESRIGNSS_FIXDATETIME
+                fixTimeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXDATETIME']
+
+                if not fixTimeField:
+                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_FIXDATETIME',
+                                                         'type': 'esriFieldTypeDate',
+                                                         'alias': 'Fix Time',
+                                                         'sqlType': 'sqlTypeOther',
+                                                         'length': 0,
                                                          'nullable': True,
                                                          'editable': True,
                                                          'domain': None,
@@ -244,8 +334,8 @@ def searchItems_addGNSSMetadataFields(args_parser):
 
                 if not averagePositionsField:
                     gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_AVG_POSITIONS',
-                                                         'type': 'esriFieldTypeSmallInteger',
-                                                         'alias': 'Number of positions averaged',
+                                                         'type': 'esriFieldTypeInteger',
+                                                         'alias': 'Averaged Positions',
                                                          'sqlType': 'sqlTypeOther',
                                                          'nullable': True,
                                                          'editable': True,
@@ -259,101 +349,13 @@ def searchItems_addGNSSMetadataFields(args_parser):
                 if not standardDeviationField:
                     gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_H_STDDEV',
                                                          'type': 'esriFieldTypeDouble',
-                                                         'alias': 'Standard deviation',
+                                                         'alias': 'Standard Deviation',
                                                          'sqlType': 'sqlTypeOther',
                                                          'nullable': True,
                                                          'editable': True,
                                                          'domain': None,
-                                                         'defaultValue': None})
+                                                         'defaultValue': None})               
                 
-
-                # ESRIGNSS_FIXTYPE
-                fixTypeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXTYPE']
-
-                if fixTypeField:
-                    # Field does exist check if the domain is set.
-                    if fixTypeField[0]['domain'] == None:
-                        if ([operation for operation in operations if operation == 'updateDefinition']):
-                            operations.append('updateDefinition')
-
-                        fixtypeFieldIndex = featureLayerFields.index(fixTypeField[0])
-                        fixTypeDomain = {'type': 'codedValue',
-                                         'name': 'ESRI_FIX_TYPE_DOMAIN',
-                                         'codedValues': [{'name': 'Fix not valid',
-                                                          'code': 0},
-                                                         {'name': 'GPS', 'code': 1},
-                                                         {'name': 'Differential GPS', 'code': 2},
-                                                         {'name': 'RTK Fixed', 'code': 4},
-                                                         {'name': 'RTK Float', 'code': 5}]}
-                        featureLayerFields[fixtypeFieldIndex]['domain'] = fixTypeDomain
-                    
-                else:
-                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_FIXTYPE',
-                                                         'type': 'esriFieldTypeInteger',
-                                                         'alias': 'Fix Type',
-                                                         'sqlType': 'sqlTypeOther',
-                                                         'nullable': True,
-                                                         'editable': True,
-                                                         'domain': {'type': 'codedValue',
-                                                                    'name': 'ESRI_FIX_TYPE_DOMAIN',
-                                                                    'codedValues': [{'name': 'Fix not valid', 'code': 0},
-                                                                                    {'name': 'GPS', 'code': 1},
-                                                                                    {'name': 'Differential GPS', 'code': 2},
-                                                                                    {'name': 'RTK Fixed', 'code': 4},
-                                                                                    {'name': 'RTK Float', 'code': 5}]},
-                                                         'defaultValue': None})
-
-                # ESRIGNSS_STATIONID
-                stationIdField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_STATIONID']
-
-                if stationIdField:
-                    # Field does exist check if the domain is set.
-                    if stationIdField[0]['domain'] == None:
-                        if ([operation for operation in operations if operation == 'updateDefinition']):
-                            operations.append('updateDefinition')
-                        stationIdFieldIndex = featureLayerFields.index(stationIdField[0])
-                        stationIdDomain = {'type': 'range',
-                                           'name': 'ESRI_STATION_ID_DOMAIN',
-                                           'range': [0, 1023]}
-                        featureLayerFields[stationIdFieldIndex]['domain'] = stationIdDomain
-
-                else:
-                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_STATIONID',
-                                                         'type': 'esriFieldTypeInteger',
-                                                         'alias': 'Station ID',
-                                                         'sqlType': 'sqlTypeOther',
-                                                         'nullable': True,
-                                                         'editable': True,
-                                                         'domain': {'type': 'range',
-                                                                    'name': 'ESRI_STATION_ID_DOMAIN',
-                                                                    'range': [0, 1023]},
-                                                         'defaultValue': None})
-
-                # ESRIGNSS_NUMSATS
-                numstatsField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_NUMSATS']
-
-                if numstatsField:
-                    # Field does exist check if the domain is set.
-                    if numstatsField[0]['domain'] == None:
-                        if ([operation for operation in operations if operation == 'updateDefinition']):
-                            operations.append('updateDefinition')
-                        numSatellitesFieldIndex = featureLayerFields.index(numstatsField[0])
-                        numSatellitesDomain = {'type': 'range',
-                                               'name': 'ESRI_NUM_SATS_DOMAIN',
-                                               'range': [0, 99]}
-                        featureLayerFields[numSatellitesFieldIndex]['domain'] = numSatellitesDomain
-
-                else:
-                    gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_NUMSATS',
-                                                         'type': 'esriFieldTypeInteger',
-                                                         'alias': 'Number of Satellites',
-                                                         'sqlType': 'sqlTypeOther',
-                                                         'nullable': True,
-                                                         'editable': True,
-                                                         'domain': {'type': 'range',
-                                                                    'name': 'ESRI_NUM_SATS_DOMAIN',
-                                                                    'range': [0, 99]},
-                                                         'defaultValue': None})
 
                 # Check if AddToDefinition operation needs to be added.
                 initialFeatureLayerFieldsCount = len(featureLayerFields)
