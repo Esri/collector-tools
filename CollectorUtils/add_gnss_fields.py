@@ -51,6 +51,7 @@ def check_and_create_domains(geodatabase):
     else:
         # Add the domain and values
         arcpy.AddMessage('Adding ESRI_FIX_TYPE_DOMAIN domain to parent geodatabase...')
+        
         arcpy.CreateDomain_management(in_workspace=geodatabase,
                                       domain_name="ESRI_FIX_TYPE_DOMAIN",
                                       domain_description="Fix Type",
@@ -160,7 +161,11 @@ def add_gnss_fields(feature_layer):
                          'ESRIGNSS_CORRECTIONAGE',
                          'ESRIGNSS_STATIONID',
                          'ESRIGNSS_NUMSATS',
-                         'ESRIGNSS_FIXDATETIME']
+                         'ESRIGNSS_FIXDATETIME',
+                         'ESRIGNSS_AVG_H_RMS',
+                        'ESRIGNSS_AVG_V_RMS',
+                        'ESRIGNSS_AVG_POSITIONS',
+                        'ESRIGNSS_H_STDDEV']
         existing_fields = arcpy.ListFields(feature_layer)
         for field in existing_fields:
             if field.name in fields_to_add:
@@ -263,6 +268,30 @@ def add_gnss_fields(feature_layer):
                                   'ESRIGNSS_FIXDATETIME',
                                   field_type="Date",
                                   field_alias='Fix Time',
+                                  field_is_nullable="NULLABLE",
+                                  )
+        arcpy.AddField_management(feature_layer,
+                                  'ESRIGNSS_AVG_H_RMS',
+                                  field_type="DOUBLE",
+                                  field_alias='Average Horizontal Accuracy (m)',
+                                  field_is_nullable="NULLABLE",
+                                  )
+        arcpy.AddField_management(feature_layer,
+                                  'ESRIGNSS_AVG_V_RMS',
+                                  field_type="DOUBLE",
+                                  field_alias='Average Vertical Accuracy (m)',
+                                  field_is_nullable="NULLABLE",
+                                  )
+        arcpy.AddField_management(feature_layer,
+                                  'ESRIGNSS_AVG_POSITIONS',
+                                  field_type="SHORT",
+                                  field_alias='Averaged Positions',
+                                  field_is_nullable="NULLABLE",
+                                  )
+        arcpy.AddField_management(feature_layer,
+                                  'ESRIGNSS_H_STDDEV',
+                                  field_type="DOUBLE",
+                                  field_alias='Standard Deviation',
                                   field_is_nullable="NULLABLE",
                                   )
         arcpy.AddMessage("Successfully added GPS Metadata fields.\n")
