@@ -291,7 +291,7 @@ def add_gnss_fields(feature_layer):
         arcpy.AddField_management(feature_layer,
                                   'ESRIGNSS_H_STDDEV',
                                   field_type="DOUBLE",
-                                  field_alias='Standard Deviation',
+                                  field_alias='Standard Deviation (m)',
                                   field_is_nullable="NULLABLE",
                                   )
         arcpy.AddMessage("Successfully added GPS Metadata fields.\n")
