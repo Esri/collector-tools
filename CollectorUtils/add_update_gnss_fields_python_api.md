@@ -35,8 +35,7 @@ Intructions to run the script.
 
 5. Script usage help. Information on required and optional parameters can be obatined via -h flag
 
-![image](https://cloud.githubusercontent.com/assets/26557666/26121407/f2914fa4-3a28-11e7-9530-f902cb8694c4.png)
-
+![image](https://user-images.githubusercontent.com/26557666/27194938-6ad4b2ec-51b9-11e7-9edd-06efea81a3c7.png)
 
 
 
