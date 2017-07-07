@@ -43,7 +43,7 @@ def check_and_create_domains(geodatabase):
     if 'ESRI_FIX_TYPE_DOMAIN' in domain_names:
         for domain in domains:
             if domain.name == 'ESRI_FIX_TYPE_DOMAIN':
-                # check if cvs 0,1,2,4,5 are in teh codedValues
+                # check if cvs 0,1,2,4,5 are in the codedValues
                 values = [cv for cv in domain.codedValues]
                 if not set(set([0, 1, 2, 4, 5])).issubset(values):
                     arcpy.AddError("ESRI_FIX_TYPE_DOMAIN is missing a coded value pair.")

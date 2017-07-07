@@ -61,6 +61,10 @@ def searchItems_addGNSSMetadataFields(args_parser):
 
         # Feature Layer index
         featureLayerIndex = args_parser.layerIndex if args_parser.layerIndex else 0
+
+        # Check if the Feature layer is of type esriGeometryPoint
+        if featureLayerCollection.manager.layers[featureLayerIndex].properties['geometryType'] != 'esriGeometryPoint':
+            arcpy.AddError("Feature layer is not a point layer")
         
         # New fields which need to be added
         gnssMetadataFields = {'fields': []}
