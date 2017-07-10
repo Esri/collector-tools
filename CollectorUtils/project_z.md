@@ -13,11 +13,11 @@ Suppose you have feature that has the following attributes where the geometry (X
 
 This tool will create a new feature class that uses the Lat, Long, and Z attributes to create the geometry (using the orginal projection: WGS84). It carries over any other attributes as well.
 
-### Using as a Script Tool within ArcMap 10.4+:
+### Using as a Script Tool within ArcMap 10.4+ or Pro:
 
 1. Connect to the folder containing the "CollectorUtils" toolbox
-2. Double click on the "CollectorUtils" toolbox that should be shown in the catalog/project area
-3. Double click the "ProjectZ" model tool (in the "OfflineUtils" toolset)
+2. Double click on the "CollectorUtils_ArcMap" (or Pro) toolbox that should be shown in the catalog/project area
+3. Double click the "ProjectZ" model tool (in the "GeneralUtils" toolset)
 4. Choose your inputs
     1. Input Features - This is the point feature class that you would like to update the geometry of and project
     2. Input Coordinate System - This is the Coordinate System of the X (long), Y (long), and Z (altitude) values. NOT necessarily the CS of the feature class
@@ -31,7 +31,7 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
 
 ![Alt text](images/ProjectZ_interface.JPG "Interface")
 
-### Re-building the toolbox (for versions lower than 10.4)
+### Re-building the toolbox (for ArcMap versions lower than 10.4)
 
 **This tool (model) relies on vertical transformations which is only available at 10.4+** 
 
