@@ -8,9 +8,10 @@ A collection of scripts and tools to perform collector specific tasks.
 
 ## Resources
 
- * [Collector for ArcGIS](http://www.esri.com/products/collector-for-arcgis)
+ * [Collector for ArcGIS](http://doc.arcgis.com/en/collector/)
  * [Arcpy](http://desktop.arcgis.com/en/arcmap/latest/analyze/arcpy/what-is-arcpy-.htm)
  * [ArcGIS REST API](http://resources.arcgis.com/en/help/arcgis-rest-api/)
+ * [ArcGIS API for Python](https://developers.arcgis.com/python/)
 
 ## Issues
 
