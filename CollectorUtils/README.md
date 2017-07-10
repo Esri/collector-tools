@@ -29,7 +29,7 @@ Five tools and corresponding scripts have been created to assist users with comm
  - ProjectZ (Model Builder) ([documentation](project_z.md))
  - [Configure GNSS Popup (ArcGIS API for Python)](configure_gnss_popup_python_api.py) ([documentation](configure_gnss_popup_python_api.md))
  
-The tools have been combined into a single toolbox (10.4 version) as shown below:
+The tools have been combined into a single toolbox in ArcGIS Pro:
 
 ![image](https://user-images.githubusercontent.com/26557666/28002061-74ce1ece-64e6-11e7-9e17-9403fb688d69.png)
 
