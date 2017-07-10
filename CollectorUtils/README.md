@@ -15,7 +15,7 @@ Four tools and corresponding scripts have been created to assist users with comm
  
 The tools have been combined into a single toolbox (10.4 version) as shown below:
 
-![Alt text](images/toolbox_view.JPG "CollectorUtils Toolbox")
+![Alt text](![image](https://user-images.githubusercontent.com/26557666/28001976-d380b536-64e5-11e7-96bd-cbfd941e9071.png) "CollectorUtils_ArcMap Toolbox")
 
 ----
 # CollectorUtils_Pro
