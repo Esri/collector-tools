@@ -3,6 +3,9 @@ A collection of scripts and tools to perform collector specific tasks
 
 ----
 
+# CollectorUtils_ArcMap
+
+
 Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
 
  - [Add GNSS Metadata Fields](add_gnss_fields.py) ([documentation](add_gnss_metadata_fields.md))
@@ -13,6 +16,22 @@ Four tools and corresponding scripts have been created to assist users with comm
 The tools have been combined into a single toolbox (10.4 version) as shown below:
 
 ![Alt text](images/toolbox_view.JPG "CollectorUtils Toolbox")
+
+----
+# CollectorUtils_Pro
+
+
+Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
+
+ - [Add GNSS Metadata Fields](add_gnss_fields.py) ([documentation](add_gnss_metadata_fields.md))
+ - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
+ - ProjectZ (Model Builder) ([documentation](project_z.md))
+ - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
+ 
+The tools have been combined into a single toolbox (10.4 version) as shown below:
+
+![Alt text](images/toolbox_view.JPG "CollectorUtils Toolbox")
+
 
 ----
 
