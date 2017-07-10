@@ -1,7 +1,7 @@
 # Add GNSS Metadata Fields
-A Python script and corresponding toolbox to automatically add GNSS attributes to feature classes and domains to geodatabases.
+A Python script and corresponding toolbox to automatically add and update GNSS attributes to feature classes and domains to geodatabases.
 
-Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.2+
+Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.4+
 
 This script/tool attempts to add the following fields to a Point Feature Class:
 
@@ -21,6 +21,10 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 | Station ID           | Station ID              | ESRIGNSS_STATIONID   | short      | ESRI_STATION_ID_DOMAIN| Range 0-1023                                                                                      |                                             
 | Number of Satellites | Number of Satellites    | ESRIGNSS_NUMSATS     | short       | ESRI_NUM_SATS_DOMAIN | Range 0-99                                                                               |
 | Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                      | UTC                                                                                      |
+| Average horizontal accuracy             | Average Horizontal Accuracy (m)                | ESRIGNSS_AVG_H_RMS | double       |                                                                                                          |
+| Average vertical accuracy             | Average Vertical Accuracy (m)              | ESRIGNSS_AVG_V_RMS | double       |                                                                                                      |
+| Number of positions averageed            | Averaged Positions                | ESRIGNSS_AVG_POSITIONS | Long       |                                                                                                         |
+| Standard deviation           | Standard Deviation (m)                | ESRIGNSS_H_STDDEV | double        |                                                                                                         |
 
 ###Using as a Python Toolbox within ArcMap or ArcGIS Pro:
 
@@ -30,9 +34,12 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 4. Select a Feature class (can also use feature service in ArcGIS Pro)
 5. Click Run
 
+
 ![Alt text](images/AddGNSSMetaData_interface.JPG "Interface")
 
-### Re-building the toolbox (for versions lower than 10.4)
+![image](https://user-images.githubusercontent.com/26557666/28002480-726d501a-64ea-11e7-83bc-3c6cabffa38b.png)
+
+### Re-building the toolbox (for ArcMap versions lower than 10.4)
 1. Create a new toolbox (if you don't already have one)
 2. Add the add_gnss_fields.py as a script
 3. Set the parameters as follows:
@@ -41,60 +48,9 @@ This script/tool attempts to add the following fields to a Point Feature Class:
     |---------------------|---------------|----------|-----------|-----------------------|
     | Input Feature Class | Feature Class | Required | Input     | Feature Class (Point) |
 
-4. Update the validation logic to check that the fields don't exist (shown below)
-
-```python
-    import arcpy
-    class ToolValidator(object):
-      """Class for validating a tool's parameter values and controlling
-      the behavior of the tool's dialog."""
-    
-      def __init__(self):
-        """Setup arcpy and the list of tool parameters."""
-        self.params = arcpy.GetParameterInfo()
-    
-      def initializeParameters(self):
-        """Refine the properties of a tool's parameters.  This method is
-        called when the tool is opened."""
-        return
-    
-      def updateParameters(self):
-        """Modify the values and properties of parameters before internal
-        validation is performed.  This method is called whenever a parameter
-        has been changed."""
-        return
-    
-      def updateMessages(self):
-        if self.params[0].value is not None:
-          fields_to_add = ['ESRIGNSS_RECEIVER',
-                               'ESRIGNSS_H_RMS',
-                               'ESRIGNSS_V_RMS',
-                               'ESRIGNSS_LATITUDE',
-                               'ESRIGNSS_LONGITUDE',
-                               'ESRIGNSS_ALTITUDE',
-                               'ESRIGNSS_PDOP',
-                               'ESRIGNSS_HDOP',
-                               'ESRIGNSS_VDOP',
-                               'ESRIGNSS_FIXTYPE',
-                               'ESRIGNSS_CORRECTIONAGE',
-                               'ESRIGNSS_STATIONID',
-                               'ESRIGNSS_NUMSATS',
-                               'ESRIGNSS_FIXDATETIME']
-          existing_fields = arcpy.ListFields(self.params[0].valueAsText)
-          fields = []
-          for field in existing_fields:
-              if field.name in fields_to_add:
-                  fields.append(field.name)
-          if fields != []:
-            self.params[0].setErrorMessage("{} fields already exists!".format(",".join(["'{}'".format(field) for field in fields])))
-          else:
-            self.params[0].clearMessage()
-        return
-```
-
 
 ###Using as a standalone script
-Run the [add_gnss_fields.py](add_gnss_fields.py) script in either Python 2.7+ or Python 3.4+ as:
+Run the [add_update_gnss_fields.py](add_update_gnss_fields.py) script in either Python 2.7+ or Python 3.4+ as:
 ```
 python add_gnss_fields.py <FQP to first feature class> <FQP to second feature class> ... <FQP to Nth feature class>
 ```

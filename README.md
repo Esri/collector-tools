@@ -1,16 +1,17 @@
-# collector-tools
-A collection of scripts and tools to perform collector specific tasks related to the collector mobile apps
+# Collector-tools
+A collection of scripts and tools to perform collector specific tasks.
 
 ## What's here
 
- * [CollectorUtils](CollectorUtils) - A Toolbox and set of python scripts for collector related tasks and workflows
+ * [CollectorUtils](CollectorUtils) - toolboxes for ArcMap and ArcGIS Pro for collector related tasks and workflows
 
 
 ## Resources
 
- * [Collector for ArcGIS](http://www.esri.com/products/collector-for-arcgis)
+ * [Collector for ArcGIS](http://doc.arcgis.com/en/collector/)
  * [Arcpy](http://desktop.arcgis.com/en/arcmap/latest/analyze/arcpy/what-is-arcpy-.htm)
  * [ArcGIS REST API](http://resources.arcgis.com/en/help/arcgis-rest-api/)
+ * [ArcGIS API for Python](https://developers.arcgis.com/python/)
 
 ## Issues
 
@@ -23,7 +24,7 @@ Please see our [guidelines for contributing](https://github.com/esri/contributin
 
 ## Licensing
 
-Copyright 2016 Esri
+Copyright 2017 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
