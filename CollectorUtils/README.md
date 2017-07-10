@@ -34,6 +34,8 @@ If you wish to use the toolbox in a version lower than 10.4, you can rebuild the
  * [Collector for ArcGIS](http://www.esri.com/products/collector-for-arcgis)
  * [Arcpy](http://desktop.arcgis.com/en/arcmap/latest/analyze/arcpy/what-is-arcpy-.htm)
  * [ArcGIS REST API](http://resources.arcgis.com/en/help/arcgis-rest-api/)
+ * [ArcGIS API for Python](https://developers.arcgis.com/python/)
+ 
 
 ## Issues
 
