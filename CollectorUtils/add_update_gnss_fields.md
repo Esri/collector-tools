@@ -34,11 +34,10 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 4. Select a Feature class (can also use feature service in ArcGIS Pro)
 5. Click Run
 
-ArcMap
+
 ![Alt text](images/AddGNSSMetaData_interface.JPG "Interface")
 
-Pro
-![Alt text](images/AddGNSSMetaData_interface.JPG "Interface")
+![image](https://user-images.githubusercontent.com/26557666/28002480-726d501a-64ea-11e7-83bc-3c6cabffa38b.png)
 
 ### Re-building the toolbox (for versions lower than 10.4)
 1. Create a new toolbox (if you don't already have one)
