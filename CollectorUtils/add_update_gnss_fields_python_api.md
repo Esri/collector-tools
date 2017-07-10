@@ -27,7 +27,11 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 | Standard deviation           | Standard Deviation (m)                | ESRIGNSS_H_STDDEV | double        |                                                                                                         |
 
 
-Intructions to run the script.
+#Intructions to run from Pro.
+![image](https://user-images.githubusercontent.com/26557666/28002606-9442b8aa-64eb-11e7-8974-b44fa513a7a9.png)
+
+
+#Intructions to run the script.
 1. Install ArcGIS API for Python using Conda (https://developers.arcgis.com/python/guide/install-and-set-up/).
 2. Once installed start command prompt (with adminstrator rights). 
 3. Navigate to the directory where Anaconda was installed and check if Python was installed successfully.
