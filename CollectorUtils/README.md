@@ -2,22 +2,6 @@
 A collection of scripts and tools to perform collector specific tasks
 
 ----
-
-# CollectorUtils_ArcMap
-
-
-Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
-
- - [Add GNSS Metadata Fields](add_update_gnss_fields.py) ([documentation](add_update_gnss_fields.md))
- - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
- - ProjectZ (Model Builder) ([documentation](project_z.md))
- - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
- 
-The tools have been combined into a single toolbox (10.4 version) as shown below:
-
-![image](https://user-images.githubusercontent.com/26557666/28001976-d380b536-64e5-11e7-96bd-cbfd941e9071.png)
-
-----
 # CollectorUtils_Pro
 
 
@@ -33,9 +17,22 @@ The tools have been combined into a single toolbox in ArcGIS Pro:
 
 ![image](https://user-images.githubusercontent.com/26557666/28002061-74ce1ece-64e6-11e7-9e17-9403fb688d69.png)
 
+----
+# CollectorUtils_ArcMap
+
+
+Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
+
+ - [Add GNSS Metadata Fields](add_update_gnss_fields.py) ([documentation](add_update_gnss_fields.md))
+ - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
+ - ProjectZ (Model Builder) ([documentation](project_z.md))
+ - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
+ 
+The tools have been combined into a single toolbox (10.4 version) as shown below:
+
+![image](https://user-images.githubusercontent.com/26557666/28001976-d380b536-64e5-11e7-96bd-cbfd941e9071.png)
 
 ----
-
 ## Dependencies
  - arcpy 10.4+ (Python 2.7.x) can use (3.4+ with arcpy in ArcGIS Pro for some of the tools, not all supported)
  - [ArcREST 3.5.3+](https://github.com/Esri/ArcREST) (for alternative ArcRest scripts, not required for the toolbox)
