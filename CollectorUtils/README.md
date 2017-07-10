@@ -30,7 +30,7 @@ Four tools and corresponding scripts have been created to assist users with comm
  
 The tools have been combined into a single toolbox (10.4 version) as shown below:
 
-![Alt text](images/toolbox_view.JPG "CollectorUtils Toolbox")
+![image](https://user-images.githubusercontent.com/26557666/28002061-74ce1ece-64e6-11e7-9e17-9403fb688d69.png)
 
 
 ----
