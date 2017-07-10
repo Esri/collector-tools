@@ -1,7 +1,7 @@
 # ProjectZ
 Assigns geometrical attributes to the geometry of a point (X, Y, Z), and creates a new feature class. Used when using GNSS GPS receivers with Collector to re-populate the Z-values in the correct coordinate system.
 
-Supported in ArcGIS 10.4+
+Supported in ArcGIS 10.4+, ArcGIS Pro 1.4+
 
 This tool is used convert attributes to geometries. The main use case for this is when using GNSS GPS receivers with the collector app, the meta data is stored (receiver name, lat, long, altitude, accuracy...) in the attribute table but the 3D z-values may not be projected properly when stored in the database. 
 
