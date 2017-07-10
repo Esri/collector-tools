@@ -1,26 +1,5 @@
 # Configure GNSS Metadata fields visibility and Popup
-Python script to configure meatadata fields visibility and popup
-
-Metadata Fields
-1. ESRIGNSS_FIXDATETIME
-2. ESRIGNSS_RECEIVER
-3. ESRIGNSS_H_RMS
-4. ESRIGNSS_V_RMS
-5. ESRIGNSS_LATITUDE
-6. ESRIGNSS_LONGITUDE
-7. ESRIGNSS_ALTITUDE
-8. ESRIGNSS_PDOP
-9. ESRIGNSS_HDOP
-10. ESRIGNSS_VDOP
-11. ESRIGNSS_CORRECTIONAGE
-12. ESRIGNSS_FIXTYPE
-13. ESRIGNSS_STATIONID
-14. ESRIGNSS_NUMSATS
-15. ESRIGNSS_AVG_H_RMS
-16. ESRIGNSS_AVG_V_RMS
-17. ESRIGNSS_AVG_POSITIONS
-18. ESRIGNSS_H_STDDEV
-
+![capture](https://user-images.githubusercontent.com/26557666/28002733-a8560878-64ec-11e7-826b-fdace77cef6a.PNG)
 
 Intructions to run the script.
 1. Install ArcGIS API for Python using Conda (https://developers.arcgis.com/python/guide/install-and-set-up/).
