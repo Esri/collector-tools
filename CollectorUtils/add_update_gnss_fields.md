@@ -23,8 +23,8 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 | Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                      | UTC                                                                                      |
 | Average horizontal accuracy             | Average Horizontal Accuracy (m)                | ESRIGNSS_AVG_H_RMS | double       |                                                                                                          |
 | Average vertical accuracy             | Average Vertical Accuracy (m)              | ESRIGNSS_AVG_V_RMS | double       |                                                                                                      |
-| Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                                                                                                         |
-| Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                                                                                                         |
+| Number of positions averageed            | Averaged Positions                | ESRIGNSS_AVG_POSITIONS | Long       |                                                                                                         |
+| Standard deviation           | Standard Deviation (m)                | ESRIGNSS_H_STDDEV | double        |                                                                                                         |
 
 ###Using as a Python Toolbox within ArcMap or ArcGIS Pro:
 
