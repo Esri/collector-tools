@@ -1,7 +1,12 @@
 # Configure GNSS Metadata fields visibility and Popup
 ![capture](https://user-images.githubusercontent.com/26557666/28002733-a8560878-64ec-11e7-826b-fdace77cef6a.PNG)
 
-Intructions to run the script.
+# Intructions to run from Pro.
+![image](https://user-images.githubusercontent.com/26557666/28002780-05812fbe-64ed-11e7-975e-1b7e63bc2c83.png)
+
+* See tool metadata in Pro for detailed instructions about parameters.
+
+# Intructions to run the script.
 1. Install ArcGIS API for Python using Conda (https://developers.arcgis.com/python/guide/install-and-set-up/).
 2. Once installed start command prompt (with adminstrator rights). 
 3. Navigate to the directory where Anaconda was installed and check if Python was installed successfully.
