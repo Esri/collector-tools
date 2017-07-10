@@ -1,5 +1,5 @@
-# collector-tools
-A collection of scripts and tools to perform collector specific tasks related to the collector mobile apps
+# Collector-tools
+A collection of scripts and tools to perform collector specific tasks.
 
 ## What's here
 
