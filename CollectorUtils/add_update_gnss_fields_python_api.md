@@ -27,8 +27,9 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 | Standard deviation           | Standard Deviation (m)                | ESRIGNSS_H_STDDEV | double        |                                                                                                         |
 
 
-# Intructions to run from Pro.
+# Intructions to run from Pro. 
 ![image](https://user-images.githubusercontent.com/26557666/28002606-9442b8aa-64eb-11e7-8974-b44fa513a7a9.png)
+* See tool metadata in Pro for detailed instructions.
 
 
 # Intructions to run the script.
