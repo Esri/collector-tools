@@ -1,5 +1,5 @@
 # CollectorUtils
-A collection of scripts and tools to perform collector specific tasks
+A collection of scripts and tools, for both ArcMap and ArcGIS Pro, to perform collector specific tasks
 
 ----
 # CollectorUtils_Pro
