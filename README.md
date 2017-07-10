@@ -3,7 +3,7 @@ A collection of scripts and tools to perform collector specific tasks.
 
 ## What's here
 
- * [CollectorUtils](CollectorUtils) - A Toolbox and set of python scripts for collector related tasks and workflows
+ * [CollectorUtils](CollectorUtils) - toolboxes for ArcMap and ArcGIS Pro for collector related tasks and workflows
 
 
 ## Resources
