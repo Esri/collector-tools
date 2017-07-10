@@ -1,7 +1,7 @@
 # Add GNSS Metadata Fields
-A Python script and corresponding toolbox to automatically add GNSS attributes to feature classes and domains to geodatabases.
+A Python script and corresponding toolbox to automatically add and update GNSS attributes to feature classes and domains to geodatabases.
 
-Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.2+
+Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.4+
 
 This script/tool attempts to add the following fields to a Point Feature Class:
 
@@ -21,6 +21,10 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 | Station ID           | Station ID              | ESRIGNSS_STATIONID   | short      | ESRI_STATION_ID_DOMAIN| Range 0-1023                                                                                      |                                             
 | Number of Satellites | Number of Satellites    | ESRIGNSS_NUMSATS     | short       | ESRI_NUM_SATS_DOMAIN | Range 0-99                                                                               |
 | Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                      | UTC                                                                                      |
+| Average horizontal accuracy             | Average Horizontal Accuracy (m)                | ESRIGNSS_AVG_H_RMS | double       |                                                                                                          |
+| Average vertical accuracy             | Average Vertical Accuracy (m)              | ESRIGNSS_AVG_V_RMS | double       |                                                                                                      |
+| Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                                                                                                         |
+| Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                                                                                                         |
 
 ###Using as a Python Toolbox within ArcMap or ArcGIS Pro:
 
