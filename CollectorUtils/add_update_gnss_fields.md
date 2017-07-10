@@ -50,7 +50,7 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 
 
 ###Using as a standalone script
-Run the [add_gnss_fields.py](add_gnss_fields.py) script in either Python 2.7+ or Python 3.4+ as:
+Run the [add_update_gnss_fields.py](add_update_gnss_fields.py) script in either Python 2.7+ or Python 3.4+ as:
 ```
 python add_gnss_fields.py <FQP to first feature class> <FQP to second feature class> ... <FQP to Nth feature class>
 ```
