@@ -8,7 +8,7 @@ A collection of scripts and tools to perform collector specific tasks
 
 Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
 
- - [Add GNSS Metadata Fields](add_gnss_fields.py) ([documentation](add_gnss_metadata_fields.md))
+ - [Add GNSS Metadata Fields](add_update_gnss_fields.py) ([documentation](add_update_gnss_fields.md))
  - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
  - ProjectZ (Model Builder) ([documentation](project_z.md))
  - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
@@ -21,12 +21,13 @@ The tools have been combined into a single toolbox (10.4 version) as shown below
 # CollectorUtils_Pro
 
 
-Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
+Five tools and corresponding scripts have been created to assist users with common Collector related tasks:
 
- - [Add GNSS Metadata Fields](add_gnss_fields.py) ([documentation](add_gnss_metadata_fields.md))
+ - [Add GNSS Metadata Fields (Pro) - FeatureClass](add_update_gnss_fields.py) ([documentation](add_update_gnss_fields.md))
+ - [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](add_update_gnss_fields_python_api.py) ([documentation](add_update_gnss_fields_python_api.md))
  - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
  - ProjectZ (Model Builder) ([documentation](project_z.md))
- - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
+ - [Configure GNSS Popup (ArcGIS API for Python)](configure_gnss_popup_python_api.py) ([documentation](configure_gnss_popup_python_api.md))
  
 The tools have been combined into a single toolbox (10.4 version) as shown below:
 
