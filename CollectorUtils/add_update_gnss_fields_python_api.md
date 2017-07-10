@@ -1,25 +1,30 @@
-# UpdateGNSSMetadata
-Python script to update GNSS metadata fields 
+# Add GNSS Metadata Fields
+A Python script and corresponding toolbox to automatically add and update GNSS attributes to feature services.
 
-Metadata Fields
-1. ESRIGNSS_FIXDATETIME
-2. ESRIGNSS_RECEIVER
-3. ESRIGNSS_H_RMS
-4. ESRIGNSS_V_RMS
-5. ESRIGNSS_LATITUDE
-6. ESRIGNSS_LONGITUDE
-7. ESRIGNSS_ALTITUDE
-8. ESRIGNSS_PDOP
-9. ESRIGNSS_HDOP
-10. ESRIGNSS_VDOP
-11. ESRIGNSS_CORRECTIONAGE
-12. ESRIGNSS_FIXTYPE
-13. ESRIGNSS_STATIONID
-14. ESRIGNSS_NUMSATS
-15. ESRIGNSS_AVG_H_RMS
-16. ESRIGNSS_AVG_V_RMS
-17. ESRIGNSS_AVG_POSITIONS
-18. ESRIGNSS_H_STDDEV
+Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.4+
+
+This script/tool attempts to add the following fields to a Point Feature Class:
+
+| Attribute            | Field Alias             | Field Name           | Field Type  | Domain               | Notes                                                                                    |
+|----------------------|-------------------------|----------------------|-------------|----------------------|------------------------------------------------------------------------------------------|
+| Receiver Name        | Receiver Name           | ESRIGNSS_RECEIVER    | string (50) |                      |                                                                                          |
+| Horizontal Accuracy  | Horizontal Accuracy (m) | ESRIGNSS_H_RMS       | double      |                      |                                                                                          |
+| Vertical Accuracy    | Vertical Accuracy (m)   | ESRIGNSS_V_RMS       | double      |                      |                                                                                          |
+| Latitude             | Latitude                | ESRIGNSS_LATITUDE    | double      |                      |                                                                                          |
+| Longitude            | Longitude               | ESRIGNSS_LONGITUDE   | double      |                      |                                                                                          |
+| Altitude             | Altitude                | ESRIGNSS_ALTITUDE    | double      |                      |                                                                                          |
+| PDOP                 | PDOP                    | ESRIGNSS_PDOP        | double      |                      |                                                                                          |
+| HDOP                 | HDOP                    | ESRIGNSS_HDOP        | double      |                      |                                                                                          |
+| VDOP                 | VDOP                    | ESRIGNSS_VDOP        | double      |                      |                                                                                          |
+| Fix Type             | Fix Type                | ESRIGNSS_FIXTYPE     | short       | ESRI_FIX_TYPE_DOMAIN |  0 - Fix not valid; 1 - GPS; 2 - Differential GPS; 4 - RTK Fixed; 5 - RTK Float |
+| Correction Age       | Correction Age          | ESRIGNSS_CORRECTIONAGE| double      |                      |                                                                                          |
+| Station ID           | Station ID              | ESRIGNSS_STATIONID   | short      | ESRI_STATION_ID_DOMAIN| Range 0-1023                                                                                      |                                             
+| Number of Satellites | Number of Satellites    | ESRIGNSS_NUMSATS     | short       | ESRI_NUM_SATS_DOMAIN | Range 0-99                                                                               |
+| Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                      | UTC                                                                                      |
+| Average horizontal accuracy             | Average Horizontal Accuracy (m)                | ESRIGNSS_AVG_H_RMS | double       |                                                                                                          |
+| Average vertical accuracy             | Average Vertical Accuracy (m)              | ESRIGNSS_AVG_V_RMS | double       |                                                                                                      |
+| Number of positions averageed            | Averaged Positions                | ESRIGNSS_AVG_POSITIONS | Long       |                                                                                                         |
+| Standard deviation           | Standard Deviation (m)                | ESRIGNSS_H_STDDEV | double        |                                                                                                         |
 
 
 Intructions to run the script.
