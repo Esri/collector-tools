@@ -96,8 +96,9 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
                     # Get the normal attributes (non-geometry)
                     params = [row[i] for i in range(0, len(in_field_names))]
                     # Create a new row to insert [X-field, Y-field, Z-Field, M-Field] + [params...]
-                    row_to_insert = [row[x_field_index], row[y_field_index], row[z_field_index], row[-1]] + params
-                    uc.insertRow(row_to_insert)
+                    if row[x_field_index] and row[y_field_index] and row[z_field_index]:
+                        row_to_insert = [row[x_field_index], row[y_field_index], row[z_field_index], row[-1]] + params
+                        uc.insertRow(row_to_insert)
 
     else:
         # Iterate over all of the ordinal rows of data and get the attributes
@@ -108,9 +109,11 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
                     # Get the normal attributes (non-geometry)
                     params = [row[i] for i in range(0, len(in_field_names))]
                     # Create a new row to insert [X-field, Y-field, Z-Field] + [params...]
-                    row_to_insert = [row[x_field_index], row[y_field_index], row[z_field_index]] + params
-                    uc.insertRow(row_to_insert)
+                    if row[x_field_index] and row[y_field_index] and row[z_field_index]:
+                        row_to_insert = [row[x_field_index], row[y_field_index], row[z_field_index]] + params
+                        uc.insertRow(row_to_insert)
     arcpy.AddMessage("Created geometry and updated attributes.")
+   
 
 if __name__ == "__main__":
     """
