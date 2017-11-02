@@ -68,6 +68,7 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
     # Create the temporary FC, would like to use "in_memory" but it causes exceptions sometimes
     arcpy.AddMessage("Creating new FC...")
     arcpy.env.preserveGlobalIds = True
+    arcpy.env.outputZFlag = "Enabled"
     temp_fc = arcpy.FeatureClassToFeatureClass_conversion(input_fc,output_path,output_name)
     arcpy.AddMessage("Copied data to new FC...")
 
@@ -82,6 +83,11 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
             row[field_len + 1] = row[y_field_index]
             row[field_len + 2] = row[z_field_index]
             updateCursor.updateRow(row)
+
+    with arcpy.da.UpdateCursor(temp_fc, in_field_names) as deleteCursor:
+        for row in deleteCursor:
+            if not row[x_field_index] and not row[y_field_index] and not [z_field_index]:
+                deleteCursor.deleteRow()
 
     # End edit session
     edit.stopOperation()
