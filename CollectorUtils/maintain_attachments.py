@@ -36,9 +36,9 @@ def enable_copy_attachments(input_fc, output_fc):
 
     inputRow = input_fc + '__ATTACH'
     outputTable = output_fc + '__ATTACH'
-    arcpy.AddMessage(outputTable)
+
     try:
-        arcpy.CopyRows_management(inputRow, outputTable)
+        arcpy.Append_management(inputRow, outputTable)
         arcpy.AddMessage("Copied Attachments..")
     except Exception as e:
         arcpy.Error(e)
