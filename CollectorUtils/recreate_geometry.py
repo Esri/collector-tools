@@ -69,6 +69,8 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
     arcpy.AddMessage("Creating new FC...")
     arcpy.env.preserveGlobalIds = True
     arcpy.env.outputZFlag = "Enabled"
+    arcpy.env.outputCoordinateSystem = arcpy.SpatialReference.loadFromString(in_spatial_ref)
+    
     temp_fc = arcpy.FeatureClassToFeatureClass_conversion(input_fc,output_path,output_name)
     arcpy.AddMessage("Copied data to new FC...")
 
