@@ -88,10 +88,13 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
             row[field_len + 2] = row[z_field_index]
             updateCursor.updateRow(row)
 
+    index = 0
     with arcpy.da.UpdateCursor(temp_fc, in_field_names) as deleteCursor:
         for row in deleteCursor:
             if not row[x_field_index] and not row[y_field_index] and not [z_field_index]:
+                index = index + 1
                 deleteCursor.deleteRow()
+    arcpy.AddMessage("{} record(s) skipped due to empty metdata fields".format(index))
 
     # End edit session
     edit.stopOperation()
