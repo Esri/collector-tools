@@ -48,4 +48,4 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
 1. There is no dedicated python script for this tool because the arcpy.ListTransformations() method does not work well with vertical coordinate systems
 
 ### Sample Workflow
-Please refer to the following Word document: [Collector ProjectZ Tool.docx](https://github.com/Esri/collector-tools/files/1489374/Collector.ProjectZ.Tool.docx)
+Please refer to the following Word document: [ProjectZ Tool Workflow.docx](https://github.com/Esri/collector-tools/files/1489418/ProjectZ.Tool.Workflow.docx)
