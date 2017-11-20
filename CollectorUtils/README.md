@@ -9,28 +9,27 @@ Five tools and corresponding scripts have been created to assist users with comm
 
  - [Add GNSS Metadata Fields (Pro) - FeatureClass](add_update_gnss_fields.py) ([documentation](add_update_gnss_fields.md))
  - [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](add_update_gnss_fields_python_api.py) ([documentation](add_update_gnss_fields_python_api.md))
+ - [Configure GNSS Popup (ArcGIS API for Python)](configure_gnss_popup_python_api.py) ([documentation](configure_gnss_popup_python_api.md))
  - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
  - ProjectZ (Model Builder) ([documentation](project_z.md))
- - [Configure GNSS Popup (ArcGIS API for Python)](configure_gnss_popup_python_api.py) ([documentation](configure_gnss_popup_python_api.md))
+ - [Maintain Attachments](maintain_attachments.py)
  
 The tools have been combined into a single toolbox in ArcGIS Pro:
 
-![image](https://user-images.githubusercontent.com/26557666/28002061-74ce1ece-64e6-11e7-9e17-9403fb688d69.png)
+![protbx](https://user-images.githubusercontent.com/24723464/33039532-23bddfcc-cded-11e7-887a-c834faddee92.JPG)
 
 ----
 # CollectorUtils_ArcMap
 
 
-Four tools and corresponding scripts have been created to assist users with common Collector related tasks:
+Two tools and corresponding scripts have been created to assist users with common Collector related tasks:
 
  - [Add GNSS Metadata Fields](add_update_gnss_fields.py) ([documentation](add_update_gnss_fields.md))
- - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
- - ProjectZ (Model Builder) ([documentation](project_z.md))
  - [Configure GNSS Popup](configure_gnss_popup.py) ([documentation](configure_gnss_popup.md))
  
 The tools have been combined into a single toolbox (10.4 version) as shown below:
 
-![image](https://user-images.githubusercontent.com/26557666/28001976-d380b536-64e5-11e7-96bd-cbfd941e9071.png)
+![arcmaptbx](https://user-images.githubusercontent.com/24723464/33042986-9b826a18-cdf8-11e7-8014-9fb40e18037a.JPG)
 
 ----
 

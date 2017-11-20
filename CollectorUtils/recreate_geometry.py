@@ -47,6 +47,7 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
     # Get all of the non-geometry attribute names
     in_field_names = [field.name for field in arcpy.Describe(input_fc).fields if
                       field.type not in ("OID", "Geometry")]
+    field_len = len(in_field_names)
 
     # Check that all of the necessary fields exist
     if x_field not in in_field_names:
@@ -59,58 +60,48 @@ def update_geom(input_fc, output_path, output_name, in_spatial_ref, x_field, y_f
         arcpy.AddError("'{}' field not found.".format(x_field))
         return -1
 
-    # The geometry fields that will be updated
-    geometry_field_names = ["SHAPE@X", "SHAPE@Y", "SHAPE@Z"]
-    # If the FC has m, then also include that
-    if arcpy.Describe(input_fc).hasM:
-        has_m = "ENABLED"
-        geometry_field_names.append("SHAPE@M")
-    else:
-        has_m = "DISABLED"
-
     # Get the index of the attributes that represent geometries
     x_field_index = in_field_names.index(x_field)
     y_field_index = in_field_names.index(y_field)
     z_field_index = in_field_names.index(z_field)
+    
     # Create the temporary FC, would like to use "in_memory" but it causes exceptions sometimes
     arcpy.AddMessage("Creating new FC...")
-    temp_fc = arcpy.CreateFeatureclass_management(output_path,
-                                                  output_name,
-                                                  geometry_type="POINT",
-                                                  template=input_fc,
-                                                  has_m=has_m,
-                                                  has_z="ENABLED",
-                                                  spatial_reference=in_spatial_ref,
-                                                  config_keyword="",
-                                                  spatial_grid_1="0",
-                                                  spatial_grid_2="0",
-                                                  spatial_grid_3="0")
-    arcpy.AddMessage("Adding data to new FC...")
-    # If the FC has m, then we need to make sure we carry that over
-    if has_m == "ENABLED":
-        # Iterate over all of the ordinal rows of data and get the attributes
-        with arcpy.da.SearchCursor(input_fc, in_field_names + ["SHAPE@M"]) as sc:
-            # Use an insert cursor to insert the old features into the new FC
-            with arcpy.da.InsertCursor(temp_fc, geometry_field_names + in_field_names) as uc:
-                for row in sc:
-                    # Get the normal attributes (non-geometry)
-                    params = [row[i] for i in range(0, len(in_field_names))]
-                    # Create a new row to insert [X-field, Y-field, Z-Field, M-Field] + [params...]
-                    row_to_insert = [row[x_field_index], row[y_field_index], row[z_field_index], row[-1]] + params
-                    uc.insertRow(row_to_insert)
+    arcpy.env.preserveGlobalIds = True
+    arcpy.env.outputZFlag = "Enabled"
+    spatialReference = arcpy.SpatialReference()
+    spatialReference.loadFromString(in_spatial_ref)
+    arcpy.env.outputCoordinateSystem = spatialReference
+    
+    temp_fc = arcpy.FeatureClassToFeatureClass_conversion(input_fc,output_path,output_name)
+    arcpy.AddMessage("Copied data to new FC...")
 
-    else:
-        # Iterate over all of the ordinal rows of data and get the attributes
-        with arcpy.da.SearchCursor(input_fc, in_field_names) as sc:
-            # Use an insert cursor to insert the old features into the new FC
-            with arcpy.da.InsertCursor(temp_fc, geometry_field_names + in_field_names) as uc:
-                for row in sc:
-                    # Get the normal attributes (non-geometry)
-                    params = [row[i] for i in range(0, len(in_field_names))]
-                    # Create a new row to insert [X-field, Y-field, Z-Field] + [params...]
-                    row_to_insert = [row[x_field_index], row[y_field_index], row[z_field_index]] + params
-                    uc.insertRow(row_to_insert)
-    arcpy.AddMessage("Created geometry and updated attributes.")
+    #Start edit session
+    edit = arcpy.da.Editor(output_path)
+    edit.startEditing(False, True)
+    edit.startOperation()
+
+    with arcpy.da.UpdateCursor(temp_fc, in_field_names+["SHAPE@X"]+["SHAPE@Y"]+["SHAPE@Z"]) as updateCursor:
+        for row in updateCursor:
+            row[field_len] = row[x_field_index]
+            row[field_len + 1] = row[y_field_index]
+            row[field_len + 2] = row[z_field_index]
+            updateCursor.updateRow(row)
+
+    index = 0
+    with arcpy.da.UpdateCursor(temp_fc, in_field_names) as deleteCursor:
+        for row in deleteCursor:
+            if not row[x_field_index] or not row[y_field_index] or not [z_field_index]:
+                index = index + 1
+                deleteCursor.deleteRow()
+    arcpy.AddMessage("{} record(s) skipped due to empty metdata fields".format(index))
+
+    # End edit session
+    edit.stopOperation()
+    edit.stopEditing(True)                            
+                             
+    arcpy.AddMessage("All Rows Updated..")   
+   
 
 if __name__ == "__main__":
     """
