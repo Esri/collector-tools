@@ -12,7 +12,7 @@ Five tools and corresponding scripts have been created to assist users with comm
  - [Configure GNSS Popup (ArcGIS API for Python)](configure_gnss_popup_python_api.py) ([documentation](configure_gnss_popup_python_api.md))
  - [Recreate Geometry](recreate_geometry.py) ([documentation](recreate_geometry.md))
  - ProjectZ (Model Builder) ([documentation](project_z.md))
- - [Maintain Attachments](maintain_attachments.py) ([documentation](maintain_attachments.py.md))
+ - [Maintain Attachments](maintain_attachments.py)
  
 The tools have been combined into a single toolbox in ArcGIS Pro:
 
