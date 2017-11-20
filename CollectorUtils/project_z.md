@@ -1,7 +1,7 @@
 # ProjectZ
 Assigns geometrical attributes to the geometry of a point (X, Y, Z), and creates a new feature class. Used when using GNSS GPS receivers with Collector to re-populate the Z-values in the correct coordinate system.
 
-Supported in ArcGIS 10.4+, ArcGIS Pro 1.4+
+Supported in ArcGIS Pro 1.4+
 
 This tool is used convert attributes to geometries. The main use case for this is when using GNSS GPS receivers with the collector app, the meta data is stored (receiver name, lat, long, altitude, accuracy...) in the attribute table but the 3D z-values may not be projected properly when stored in the database. 
 
@@ -13,10 +13,10 @@ Suppose you have feature that has the following attributes where the geometry (X
 
 This tool will create a new feature class that uses the Lat, Long, and Z attributes to create the geometry (using the orginal projection: WGS84). It carries over any other attributes as well.
 
-### Using as a Script Tool within ArcMap 10.4+ or Pro:
+### Run the tool within ArcGIS Pro:
 
 1. Connect to the folder containing the "CollectorUtils" toolbox
-2. Double click on the "CollectorUtils_ArcMap" (or Pro) toolbox that should be shown in the catalog/project area
+2. Double click on the "CollectorUtils_Pro" toolbox that should be shown in the Catalog panel
 3. Double click the "ProjectZ" model tool (in the "GeneralUtils" toolset)
 4. Choose your inputs
     1. Input Features - This is the point feature class that you would like to update the geometry of and project
@@ -30,10 +30,6 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
 5. Click Run
 
 ![Alt text](images/ProjectZ_interface.JPG "Interface")
-
-### Re-building the toolbox (for ArcMap versions lower than 10.4)
-
-**This tool (model) relies on vertical transformations which is only available at 10.4+** 
 
 ### What it does
 1. Calls the [Recreate Geometry](recreate_geometry.md) tool to create a new feature class using the specified attributes as the geometry
