@@ -50,7 +50,7 @@ def update_feature_service(itemId,owner,folder_id,gis,feaureService_data):
         ex = result['error']['message']
         arcpy.AddMessage("Error..{}".format(ex))
     else:
-        arcpy.AddMessage("Siccessfully configured popup and visibility on the Feature service Item..")
+        arcpy.AddMessage("Successfully configured popup and visibility on the Feature service Item..")
     
 
 # Parse Command-line arguments
@@ -231,7 +231,7 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
             if 'popupInfo' in webmap['operationalLayers'][args_parser.layerIndex].keys():
                 webmap['operationalLayers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
             else:
-                #webmap['operationalLayers'][args_parser.layerIndex]['popupInfo'] = {'fieldInfos' : fieldInfos}
+                webmap['operationalLayers'][args_parser.layerIndex]['popupInfo'] = {'fieldInfos' : fieldInfos}
                 #feature_service_data['layers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
                 #update_feature_service(featureServiceItemId, owner, folder_Id, gis,feature_service_data)                
                 
@@ -239,13 +239,13 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
             if 'popupInfo' in webmap['operationalLayers'][0].keys():
                 webmap['operationalLayers'][0]['popupInfo']['fieldInfos'] = fieldInfos
             else:
-                #webmap['operationalLayers'][0]['popupInfo'] = {'fieldInfos' : fieldInfos}
+                webmap['operationalLayers'][0]['popupInfo'] = {'fieldInfos' : fieldInfos}
                 #feature_service_data['layers'][0]['popupInfo']['fieldInfos'] = fieldInfos
                 #update_feature_service(featureServiceItemId, owner, folder_Id,gis, feature_service_data)
 
         # Update Webmap
         webmap.update()
-        arcpy.AddMessage("Siccessfully configured popup and visibility on the Webmap..")
+        arcpy.AddMessage("Successfully configured popup and visibility on the Webmap..")
     
     
     except Exception as e:
