@@ -47,11 +47,14 @@ def update_service_definition(args_parser):
 
         for layer in layers:
             layer_index = layers.index(layer)
-            not_null_fields = [field['name'] for field in layer.properties['fields'] if not field['nullable'] and not field['defaultValue']]
+            fields_to_reset = [field['name'] for field in layer.properties['fields'] \
+                               if not field['domain'] and \
+                               not field['nullable'] and \
+                               not field['defaultValue']]
             for type in layer.properties.types:
                 for template in type.templates:
                     for field_name,value in template.prototype['attributes'].items():
-                        if field_name not in not_null_fields:
+                        if field_name not in fields_to_reset:
                             continue
                         else:
                             template.prototype['attributes'][field_name] = None
@@ -60,7 +63,7 @@ def update_service_definition(args_parser):
             templates = layer.properties.templates
             for template in templates:
                 for field_name, value in template.prototype['attributes'].items():
-                    if field_name not in not_null_fields:
+                    if field_name not in fields_to_reset:
                         continue
                     else:
                         template.prototype['attributes'][field_name] = None
