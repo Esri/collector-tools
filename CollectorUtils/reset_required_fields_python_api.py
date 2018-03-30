@@ -57,8 +57,9 @@ def update_service_definition(args_parser):
                         if field_name not in fields_to_reset:
                             continue
                         else:
-                            template.prototype['attributes'][field_name] = None
-                            updated_types = True
+                            if not template.prototype['attributes'][field_name]:
+                                template.prototype['attributes'][field_name] = None
+                                updated_templates = True
 
             templates = layer.properties.templates
             for template in templates:
@@ -66,8 +67,9 @@ def update_service_definition(args_parser):
                     if field_name not in fields_to_reset:
                         continue
                     else:
-                        template.prototype['attributes'][field_name] = None
-                        updated_templates = True
+                        if not template.prototype['attributes'][field_name]:
+                            template.prototype['attributes'][field_name] = None
+                            updated_templates = True
 
             if updated_templates or updated_types:
                 if 'editingInfo' in layer.properties and 'lastEditDate' in layer.properties['editingInfo']:
