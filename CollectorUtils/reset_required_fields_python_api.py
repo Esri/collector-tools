@@ -47,29 +47,43 @@ def update_service_definition(args_parser):
 
         for layer in layers:
             layer_index = layers.index(layer)
-            fields_to_reset = [field['name'] for field in layer.properties['fields'] \
+            fields_to_reset = {field['name']:field['type'] for field in layer.properties['fields'] \
                                if not field['domain'] and \
-                               not field['nullable'] and \
-                               not field['defaultValue']]
+                               not field['nullable']}
             for type in layer.properties.types:
                 for template in type.templates:
                     for field_name,value in template.prototype['attributes'].items():
-                        if field_name not in fields_to_reset:
+                        if field_name not in fields_to_reset.keys():
                             continue
                         else:
-                            if not template.prototype['attributes'][field_name]:
+                            if fields_to_reset[field_name] == 'esriFieldTypeDate' and template.prototype['attributes'][field_name] < 0:
                                 template.prototype['attributes'][field_name] = None
                                 updated_templates = True
+                                continue
+                            if isinstance(template.prototype['attributes'][field_name], str) and \
+                                    template.prototype['attributes'][field_name].isspace() or \
+                                    not template.prototype['attributes'][field_name]:
+                                template.prototype['attributes'][field_name] = None
+                                updated_templates = True
+                                continue
 
             templates = layer.properties.templates
             for template in templates:
                 for field_name, value in template.prototype['attributes'].items():
-                    if field_name not in fields_to_reset:
+                    if field_name not in fields_to_reset.keys():
                         continue
                     else:
-                        if not template.prototype['attributes'][field_name]:
+                        if fields_to_reset[field_name] == 'esriFieldTypeDate' and template.prototype['attributes'][field_name] < 0:
                             template.prototype['attributes'][field_name] = None
                             updated_templates = True
+                            continue
+
+                        if isinstance(template.prototype['attributes'][field_name],str) and \
+                                template.prototype['attributes'][field_name].isspace() or \
+                                not template.prototype['attributes'][field_name]:
+                            template.prototype['attributes'][field_name] = None
+                            updated_templates = True
+                            continue
 
             if updated_templates or updated_types:
                 if 'editingInfo' in layer.properties and 'lastEditDate' in layer.properties['editingInfo']:
