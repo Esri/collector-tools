@@ -32,70 +32,101 @@ def parseArguments():
     arcpy.AddMessage("Done parsing arguments..")
     return args_parser
 
-def update_service_definition(args_parser):
-    updated_types = False
-    updated_templates = False
+def update_template(featureLayerCollection, layer_table,index,is_table):
 
+    fields_to_reset = {field['name']: field['type'] for field in layer_table.properties['fields'] \
+                       if not field['domain'] and \
+                       not field['nullable']}
+    for type in layer_table.properties.types:
+        for template in type.templates:
+            for field_name, value in template.prototype['attributes'].items():
+                if field_name not in fields_to_reset.keys():
+                    continue
+                else:
+                    if fields_to_reset[field_name] == 'esriFieldTypeDate' and \
+                       template.prototype['attributes'][field_name] and \
+                       template.prototype['attributes'][field_name] < 0:
+                        template.prototype['attributes'][field_name] = None
+                        updated_templates = True
+                        continue
+                    if isinstance(template.prototype['attributes'][field_name], str) and \
+                            template.prototype['attributes'][field_name].isspace() or \
+                            not template.prototype['attributes'][field_name]:
+                        template.prototype['attributes'][field_name] = None
+                        updated_templates = True
+                        continue
+
+    templates = layer_table.properties.templates
+    for template in templates:
+        for field_name, value in template.prototype['attributes'].items():
+            if field_name not in fields_to_reset.keys():
+                continue
+            else:
+                if fields_to_reset[field_name] == 'esriFieldTypeDate' and \
+                        template.prototype['attributes'][field_name] and \
+                                template.prototype['attributes'][field_name] < 0:
+                    template.prototype['attributes'][field_name] = None
+                    updated_templates = True
+                    continue
+
+                if isinstance(template.prototype['attributes'][field_name], str) and \
+                        template.prototype['attributes'][field_name].isspace() or \
+                        not template.prototype['attributes'][field_name]:
+                    template.prototype['attributes'][field_name] = None
+                    updated_templates = True
+                    continue
+
+    if updated_templates or updated_types:
+        if 'editingInfo' in layer_table.properties and 'lastEditDate' in layer_table.properties['editingInfo']:
+            del layer_table.properties.editingInfo['lastEditDate']
+        if "currentVersion" in layer_table.properties:
+            if updated_templates:
+                updated_templates_dict = {"templates":layer_table.properties['templates']}
+                if is_table:
+                    featureLayerCollection.manager.tables[index].update_definition(updated_templates_dict)
+                else:
+                    featureLayerCollection.manager.layers[index].update_definition(updated_templates_dict)
+            if updated_types:
+                updated_types_dict = {"types":layer_table.properties['types']}
+                if is_table:
+                    featureLayerCollection.manager.tables[index].update_definition(updated_types_dict)
+                else:
+                    featureLayerCollection.manager.layers[index].update_definition(updated_types_dict)
+        else:
+            if is_table:
+                featureLayerCollection.manager.tables[index].update_definition(layer_table.properties)
+            else:
+                featureLayerCollection.manager.layers[index].update_definition(layer_table.properties)
+            
+
+def update_service_definition(args_parser):
     try:
         gis = GIS(args_parser.url,args_parser.username, args_parser.password)
         featureLayerItem = gis.content.get(args_parser.itemId)
 
         featureLayerCollection = FeatureLayerCollection.fromitem(featureLayerItem)
         layers = featureLayerCollection.manager.layers
+        tables = featureLayerCollection.manager.tables
 
-        arcpy.AddMessage("Updating Service Definition..")
+        arcpy.AddMessage("Updating Service Definition..")        
 
         for layer in layers:
             layer_index = layers.index(layer)
-            fields_to_reset = {field['name']:field['type'] for field in layer.properties['fields'] \
-                               if not field['domain'] and \
-                               not field['nullable']}
-            for type in layer.properties.types:
-                for template in type.templates:
-                    for field_name,value in template.prototype['attributes'].items():
-                        if field_name not in fields_to_reset.keys():
-                            continue
-                        else:
-                            if fields_to_reset[field_name] == 'esriFieldTypeDate' and template.prototype['attributes'][field_name] < 0:
-                                template.prototype['attributes'][field_name] = None
-                                updated_templates = True
-                                continue
-                            if isinstance(template.prototype['attributes'][field_name], str) and \
-                                    template.prototype['attributes'][field_name].isspace() or \
-                                    not template.prototype['attributes'][field_name]:
-                                template.prototype['attributes'][field_name] = None
-                                updated_templates = True
-                                continue
+            update_template(featureLayerCollection,layer,layer_index,False)
 
-            templates = layer.properties.templates
-            for template in templates:
-                for field_name, value in template.prototype['attributes'].items():
-                    if field_name not in fields_to_reset.keys():
-                        continue
-                    else:
-                        if fields_to_reset[field_name] == 'esriFieldTypeDate' and template.prototype['attributes'][field_name] < 0:
-                            template.prototype['attributes'][field_name] = None
-                            updated_templates = True
-                            continue
+        for table in tables:
+            table_index = tables.index(table)
+            update_template(featureLayerCollection,table,table_index,True)
 
-                        if isinstance(template.prototype['attributes'][field_name],str) and \
-                                template.prototype['attributes'][field_name].isspace() or \
-                                not template.prototype['attributes'][field_name]:
-                            template.prototype['attributes'][field_name] = None
-                            updated_templates = True
-                            continue
-
-            if updated_templates or updated_types:
-                if 'editingInfo' in layer.properties and 'lastEditDate' in layer.properties['editingInfo']:
-                    del layer.properties.editingInfo['lastEditDate']
-                featureLayerCollection.manager.layers[layer_index].update_definition(layer.properties)
                 
         arcpy.AddMessage("Updated Service Definition..")
 
     except Exception as e:
-        arcpy.AddMessage(e)
+        arcpy.Fail(e)
     
 
 if __name__ == '__main__':
+    updated_types = False
+    updated_templates = False
     args_parser = parseArguments()
     update_service_definition(args_parser)
