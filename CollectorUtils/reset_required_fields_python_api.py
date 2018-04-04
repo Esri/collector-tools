@@ -49,13 +49,13 @@ def update_template(featureLayerCollection, layer_table,index,is_table):
                        template.prototype['attributes'][field_name] and \
                        template.prototype['attributes'][field_name] < 0:
                         template.prototype['attributes'][field_name] = None
-                        updated_templates = True
+                        updated_types = True
                         continue
                     if isinstance(template.prototype['attributes'][field_name], str) and \
                             template.prototype['attributes'][field_name].isspace() or \
                             not template.prototype['attributes'][field_name]:
                         template.prototype['attributes'][field_name] = None
-                        updated_templates = True
+                        updated_types = True
                         continue
 
     templates = layer_table.properties.templates
