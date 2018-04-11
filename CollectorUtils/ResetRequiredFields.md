@@ -38,33 +38,10 @@ Fields are said to be "required" in Collector if the field is not nullable. In t
 ![Alt text](/images/ResetRequiredFields_interface.JPG "Interface")
 
 ### Using as a standalone script
-Two scripts are provided. The [reset_required_fields_arcrest.py](reset_required_fields_arcrest.py) script relies on the [ArcREST](https://github.com/Esri/ArcREST) library to send requests to Portal and AGOL. This allows organizations that use PKI, IWA/NTLM, and LDAP to authenticate properly. The [reset_required_fields.py](reset_required.py) script only support the 'built-in' authentication but it is faster.
+Run the [reset_required_fields_python_api.py](reset_required_fields_python_api.py) script in Python 3.4+ as:
 
-Run the [configure_gnss_popup.py](reset_required_fields.py) script in either Python 2.7+ or Python 3.4+ as:
-```python
-python reset_required_fields.py -u <username> -p <password> -url <org url> <id1> <id2> ... <idn>
-```
+![image](https://user-images.githubusercontent.com/26557666/38633594-115d5a9a-3d75-11e8-80cd-8b8729d48bd1.png)
 
-In addition the script allows multiple services to be configured at the same time; just supply all ids at the end.
-
-Example:
-```python
-python reset_required_fields.py -u mycoolusername -p myevencoolerpassword -url "https://myorg.maps.arcgis.com" "y933se6f51af4a89bac06808da5e7ed0"
-```
-
-----
-
-Run the [reset_required_fields_arcrest.py](reset_required_fields_arcrest.py) script in either Python 2.7+ or Python 3.4+ as:
-```python
-python reset_required_fields_arcrest.py -u <username> -p <password> -url <org url> -ids <id1> <id2> ...<idn>
-```
-
-This shows how to authenticate with 'built-in' security. Additional parameters may be required if other authentication methods are desired (see source code or ArcREST documentation). In addition the script allows multiple services to be configured at the same time; just supply all ids after the "-ids" flag.
-
-Example:
-```python
-python reset_required_fields_arcrest.py -u mycoolusername -p myevencoolerpassword -url "https://myorg.maps.arcgis.com" -v -e -ids "t933fe6f51af4a89bac06808da5e7ed3"
-```
 
 ### What it does
 1. Authenticates with Portal/AGOL and gets a token
