@@ -17,17 +17,22 @@ Fields are said to be "required" in Collector if the field is not nullable. In t
     2. Remove property lastEditDate, should remove similar to the following: "lastEditDate" : 1455664570690
 8. Tap Update Layer Definition.If successful, should see ‘Updated Feature Service Layer:
 
-### Using as a Script Tool within ArcMap
+### Using as a Script Tool within ArcGIS Pro
 
-**You must be signed into a Portal or AGOL Organization**
+![image](https://user-images.githubusercontent.com/26557666/38632020-4d8b5f12-3d70-11e8-8b6a-2ad4c18fd7f9.png)
 
-**Supports 'built-in' and 'SAML' authentication**
 
-1. Connect to the folder containing the "CollectorUtils" toolbox
-2. Double click on the "CollectorUtils" toolbox that should be shown in the catalog/project area
-3. Double click the "Reset Required Fields" script tool (in the "OnlineUtils" toolset)
-4. Choose your inputs
-    1. Service ID - The id of the service to update (e.g. (f1bad03e6fd74f45a4708d034bd847a4)
+**Script takes the following parameters as input**
+1. Organization Url
+2. Username 
+3. Password
+4. Feature Service ItemId
+
+**Instructions to run the script**
+1. Connect to the folder containing the "CollectorUtils_Pro" toolbox
+2. Double click on the "CollectorUtils_Pro" toolbox that should be shown in the catalog/project area
+3. Under GeneralUtils toolbox double click the "Reset Required Fields (Python api)" script tool
+4. Key-in all the required inputs    
 5. Click Run
 
 ![Alt text](/images/ResetRequiredFields_interface.JPG "Interface")
