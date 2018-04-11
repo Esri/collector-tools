@@ -43,9 +43,3 @@ Run the [reset_required_fields_python_api.py](reset_required_fields_python_api.p
 ![image](https://user-images.githubusercontent.com/26557666/38633594-115d5a9a-3d75-11e8-80cd-8b8729d48bd1.png)
 
 
-### What it does
-1. Authenticates with Portal/AGOL and gets a token
-2. Gets the specified item data and service url
-3. Gets the service definition of each layer in the service
-4. Updates the non-nullable fields in the template info section of the json
-5. Submits edits to Portal/AGOL using the updateDefinition endpoint
