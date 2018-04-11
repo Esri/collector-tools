@@ -10,7 +10,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    This sample uses the ArcGIS api for Python to update the service definition of a
-   feature service by resetting the required fields to None (null) in-place of 0 and whitepaces.​    
+   feature service by resetting the required fields to None (null) in-place of 0 and whitespaces.​    
 """
 
 from arcgis.gis import GIS
