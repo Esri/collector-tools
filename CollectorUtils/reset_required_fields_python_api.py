@@ -28,9 +28,13 @@ def parseArguments():
     parser.add_argument('url', help='Organization url')
     parser.add_argument('username', help='Organization username')
     parser.add_argument('password', help='Organization password')
+    
     parser.add_argument('itemId', type=str, help='Feature service Item Id')
 
     args_parser = parser.parse_args()
+    if '*' in args_parser.password:
+        args_parser.password = password = arcpy.GetParameterAsText(2)
+    
     arcpy.AddMessage("Done parsing arguments..")
     return args_parser
 

@@ -67,6 +67,8 @@ def parseArguments():
     parser.add_argument('layerIndex', type=int, help='Feature Layer index. If not specified use 0 as index')
 
     args_parser = parser.parse_args()
+    if '*' in args_parser.password:
+        args_parser.password = password = arcpy.GetParameterAsText(2)
     arcpy.AddMessage("Done parsing arguments..")
     return args_parser
 
