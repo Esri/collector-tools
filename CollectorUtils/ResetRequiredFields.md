@@ -1,6 +1,8 @@
 # Reset Required Fields
 Sets the "required" fields to be null rather than white-space or 0 in the service definition template information.
 
+Supported in ArcGIS Pro 2.0+
+
 Fields are said to be "required" in Collector if the field is not nullable. In the template information in the layer definition file, some of these fields are set to blank white-space (" ","") or to 0. These template values then auto-populate the fields in the Collector app meaning the end-user doesn't have to enter anything, when in reality, they should be forced to enter a value. The scripts automate the process of:
 
 1. From My Content in ArcGIS Online, click View Item Details for desired Feature Layer
