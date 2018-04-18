@@ -40,8 +40,8 @@ Fields are said to be "required" in Collector if the field is not nullable. In t
 ![Alt text](/images/ResetRequiredFields_interface.JPG "Interface")
 
 ### Using as a standalone script
-Run the [reset_required_fields_python_api.py](reset_required_fields_python_api.py) script in Python 3.4+ as:
+Run the [reset_required_fields_python_api.py](reset_required_fields_python_api.py) script in Python 3.4+ as (omit the '{}' brackets for the arguments):
 
-![image](https://user-images.githubusercontent.com/26557666/38633594-115d5a9a-3d75-11e8-80cd-8b8729d48bd1.png)
+![capture](https://user-images.githubusercontent.com/24723464/38956897-d9a2efae-430d-11e8-8a82-3505089164bc.PNG)
 
 
