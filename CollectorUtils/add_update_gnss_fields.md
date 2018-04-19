@@ -1,7 +1,7 @@
 # Add GNSS Metadata Fields
 A Python script and corresponding toolbox to automatically add and update GNSS attributes to feature classes and domains to geodatabases.
 
-Supported in at least ArcGIS 10.3.x+ and ArcGIS Pro 1.4+
+Supported in at least ArcMap 10.4+ and ArcGIS Pro 2.0+
 
 This script/tool attempts to add the following fields to a Point Feature Class:
 

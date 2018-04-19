@@ -34,6 +34,8 @@ def parseArguments():
                         help='Set True if GNSS metadata fields need to be removed')
 
     args_parser = parser.parse_args()
+    if '*' in args_parser.password:
+        args_parser.password = password = arcpy.GetParameterAsText(2)
     arcpy.AddMessage("Done parsing arguments..")
     return args_parser
 
@@ -424,8 +426,7 @@ def searchItems_addGNSSMetadataFields(args_parser):
 
 
     except Exception as e:
-        arcpy.AddMessage(e)
-        print(e)
+        arcpy.Fail(e)        
 
 
 if __name__ == '__main__':

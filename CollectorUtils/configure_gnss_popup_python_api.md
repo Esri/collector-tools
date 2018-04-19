@@ -1,4 +1,5 @@
 # Configure GNSS Metadata fields visibility and Popup
+Supported in ArcGIS Pro 2.0+
 ![capture](https://user-images.githubusercontent.com/26557666/28002733-a8560878-64ec-11e7-826b-fdace77cef6a.PNG)
 
 # Intructions to run from Pro.
