@@ -41,8 +41,7 @@ def parseArguments():
 def update_template(featureLayerCollection, layer_table,index,is_table):
 
     fields_to_reset = {field['name']: field['type'] for field in layer_table.properties['fields'] \
-                       if not field['domain'] and \
-                       not field['nullable']}
+                       if not field['nullable']}
     for type in layer_table.properties.types:
         for template in type.templates:
             for field_name, value in template.prototype['attributes'].items():
