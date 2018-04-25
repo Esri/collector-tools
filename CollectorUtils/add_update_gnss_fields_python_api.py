@@ -426,7 +426,7 @@ def searchItems_addGNSSMetadataFields(args_parser):
 
 
     except Exception as e:
-        arcpy.Fail(e)        
+        arcpy.AddError(e)        
 
 
 if __name__ == '__main__':

@@ -127,7 +127,7 @@ def update_service_definition(args_parser):
         arcpy.AddMessage("Updated Service Definition..")
 
     except Exception as e:
-        arcpy.Fail(e)
+        arcpy.AddError(e)
     
 
 if __name__ == '__main__':
