@@ -30,7 +30,7 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
 ![Alt text](images/RecreateGeometry_interface.JPG "Interface")
 
 ### Using as a standalone script
-Run the [recreate_geometry.py](recreate_geometry.py) script in either Python 2.7+ or Python 3.4+
+Run the [recreate_geometry.py](scripts/recreate_geometry.py) script in either Python 2.7+ or Python 3.4+
 ```python
     python recreate_geometry.py <FQP to feature class> <input spatial reference as string> <x-field> <y-field> <z-field> <FQP to output feature class>
 ```

@@ -25,7 +25,7 @@ Fields are said to be "required" in Collector if the field is not nullable. In t
 
 
 **Script takes the following parameters as input**
-1. Organization Url
+1. Organization Url 
 2. Username 
 3. Password
 4. Feature Service ItemId
@@ -34,13 +34,13 @@ Fields are said to be "required" in Collector if the field is not nullable. In t
 1. Connect to the folder containing the "CollectorUtils_Pro" toolbox
 2. Double click on the "CollectorUtils_Pro" toolbox that should be shown in the catalog/project area
 3. Under GeneralUtils toolbox double click the "Reset Required Fields (Python api)" script tool
-4. Key-in all the required inputs    
+4. Enter required input parameters    
 5. Click Run
 
 ![Alt text](/images/ResetRequiredFields_interface.JPG "Interface")
 
 ### Using as a standalone script
-Run the [reset_required_fields_python_api.py](reset_required_fields_python_api.py) script in Python 3.4+ as (omit the '{}' brackets for the arguments):
+Run the [reset_required_fields_python_api.py](scripts/reset_required_fields_python_api.py) script in Python 3.4+ as (omit the '{}' brackets for the arguments):
 
 ![capture](https://user-images.githubusercontent.com/24723464/38956897-d9a2efae-430d-11e8-8a82-3505089164bc.PNG)
 
