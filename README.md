@@ -8,7 +8,7 @@ A set of Python scripts using the [ArcGIS API for Python v1.4.1+](https://develo
 | [Add GNSS Metadata Fields (Pro) - FeatureClass](collectorutils/scripts/add_update_gnss_fields.py) | [Documentation](collectorutils/add_update_gnss_fields.md) |
 | [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](collectorutils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](collectorutils/add_update_gnss_fields_python_api.md) |
 | [Configure GNSS Popup (ArcGIS API for Python)](collectorutils/scripts/configure_gnss_popup_python_api.py) | [Documentation](collectorutils/configure_gnss_popup_python_api.md) |
-| ProjectZ (Model Builder) | [Documentation](collectorutils/project_z.md) | 
+| [ProjectZ (Model Builder)](collectorutils/scripts/project_z.py) | [Documentation](collectorutils/project_z.md) | 
  
 The tools have been combined into a single toolbox in ArcGIS Pro:
 
