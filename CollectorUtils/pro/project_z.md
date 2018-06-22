@@ -32,9 +32,9 @@ This tool will create a new feature class that uses the Lat, Long, and Z attribu
 ![Alt text](images/ProjectZ_interface.JPG "Interface")
 
 ### What it does
-1. Calls the [Recreate Geometry](recreate_geometry.md) tool to create a new feature class using the specified attributes as the geometry
+1. Calls the [Recreate Geometry](scripts/recreate_geometry.md) tool to create a new feature class using the specified attributes as the geometry
 2. Projects the new feature class to the desired projection
-3. Calls the [Maintain Attachments](maintain_attachments.py) tool to enable attachments on the output feature class and append any existing attachments into it from the input feature class. 
+3. Calls the [Maintain Attachments](scripts/maintain_attachments.py) tool to enable attachments on the output feature class and append any existing attachments into it from the input feature class. 
 
 ### Additional Notes:
  - The tool will not maintain user-defined related tables on the output feature class. In this case, those relationship classes would need to be recreated manually in the ouput geodatabase. You can follow the same relationship class properties from the original feature class. 

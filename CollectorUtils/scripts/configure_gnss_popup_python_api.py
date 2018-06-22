@@ -88,31 +88,10 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
         webmapItem = gis.content.search(itemId, item_type="Web Map")  # create a Webmap object from the search result
         webmap = arcgis.mapping.WebMap(webmapItem[0])
 
-        if 'popupInfo' in webmap['operationalLayers'][args_parser.layerIndex].keys():
-            arcpy.arcpy.AddMessage("Service from ArcMap..")
-            # Configure popup and set visibility on the GNSSMetadata fields.
-            fieldInfos = webmap['operationalLayers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] if args_parser.layerIndex else \
-                         webmap['operationalLayers'][0]['popupInfo']['fieldInfos']
-        else:
-            arcpy.arcpy.AddMessage("Service from Pro..")
-            featureServiceItemId = webmap['operationalLayers'][args_parser.layerIndex]['itemId'] if args_parser.layerIndex else \
-                                   webmap['operationalLayers'][0]['itemId']
-            featureServiceItem = gis.content.search(featureServiceItemId, item_type="Feature Service")
-            params = {
-                "token": gis._con.token,
-                "f": "json"
-                }
+        # Configure popup and set visibility on the GNSSMetadata fields.
+        fieldInfos = webmap.layers[args_parser.layerIndex]['popupInfo']['fieldInfos'] if args_parser.layerIndex else \
+                     webmap.layers[0]['popupInfo']['fieldInfos']
         
-            feature_service_data = get_data(featureServiceItemId,params)
-            feature_service_details = get_details(featureServiceItemId,params)
-
-            owner = feature_service_details['owner']
-            folder_Id = feature_service_details['ownerFolder']
-            
-            fieldInfos = feature_service_data['layers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] if args_parser.layerIndex else \
-                         feature_service_data['layers'][0]['popupInfo']['fieldInfos']            
-            
-
         for field_info in fieldInfos:
             # Configure popup and visibility for GNSSMetadata fields
             if field_info['fieldName'].upper() == 'ESRIGNSS_H_RMS':
@@ -230,20 +209,14 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
 
         # Set Webmap fieldInfos property
         if args_parser.layerIndex:
-            if 'popupInfo' in webmap['operationalLayers'][args_parser.layerIndex].keys():
-                webmap['operationalLayers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
-            else:
-                webmap['operationalLayers'][args_parser.layerIndex]['popupInfo'] = {'fieldInfos' : fieldInfos}
-                #feature_service_data['layers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
-                #update_feature_service(featureServiceItemId, owner, folder_Id, gis,feature_service_data)                
+            webmap.layers[args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
+            #feature_service_data['layers'][args_parser.layerIndex]['popupInfo']['fieldInfos'] = fieldInfos
+            #update_feature_service(featureServiceItemId, owner, folder_Id, gis,feature_service_data)                
                 
         else:
-            if 'popupInfo' in webmap['operationalLayers'][0].keys():
-                webmap['operationalLayers'][0]['popupInfo']['fieldInfos'] = fieldInfos
-            else:
-                webmap['operationalLayers'][0]['popupInfo'] = {'fieldInfos' : fieldInfos}
-                #feature_service_data['layers'][0]['popupInfo']['fieldInfos'] = fieldInfos
-                #update_feature_service(featureServiceItemId, owner, folder_Id,gis, feature_service_data)
+            webmap.layers[0]['popupInfo']['fieldInfos'] = fieldInfos
+            #feature_service_data['layers'][0]['popupInfo']['fieldInfos'] = fieldInfos
+            #update_feature_service(featureServiceItemId, owner, folder_Id,gis, feature_service_data)
 
         # Update Webmap
         webmap.update()
