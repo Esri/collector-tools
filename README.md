@@ -4,10 +4,10 @@ A set of Python scripts using the [ArcGIS API for Python v1.4.1+](https://develo
 
 | Script   | Functionality     |                                                                        
 |-----------------|------------|
-| [Reset Required Fields (Python api)](collectorutils/scripts/reset_required_fields_python_api.py) | [Documentation](collectorutils/reset_required_fields.md) |
-| [Add GNSS Metadata Fields (Pro) - FeatureClass](collectorutils/scripts/add_update_gnss_fields.py) | [Documentation](collectorutils/add_update_gnss_fields.md) |
-| [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](collectorutils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](collectorutils/add_update_gnss_fields_python_api.md) |
-| [Configure GNSS Popup (ArcGIS API for Python)](collectorutils/scripts/configure_gnss_popup_python_api.py) | [Documentation](collectorutils/configure_gnss_popup_python_api.md) |
+| [Reset Required Fields (Python api)](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/reset_required_fields_python_api.py) | [Documentation](collectorutils/reset_required_fields.md) |
+| [Add GNSS Metadata Fields (Pro) - FeatureClass](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/add_update_gnss_fields.py) | [Documentation](collectorutils/add_update_gnss_fields.md) |
+| [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](collectorutils/add_update_gnss_fields_python_api.md) |
+| [Configure GNSS Popup (ArcGIS API for Python)](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/configure_gnss_popup_python_api.py) | [Documentation](collectorutils/configure_gnss_popup_python_api.md) |
 | [ProjectZ (Model Builder)](collectorutils/scripts/project_z.py) | [Documentation](collectorutils/project_z.md) | 
  
 The tools have been combined into a single toolbox in ArcGIS Pro:
