@@ -39,7 +39,9 @@ def parseArguments():
     return args_parser
 
 def update_template(featureLayerCollection, layer_table,index,is_table):
-
+    updated_types = False
+    updated_templates = False
+    
     fields_to_reset = {field['name']: field['type'] for field in layer_table.properties['fields'] \
                        if not field['nullable']}
     for type in layer_table.properties.types:
@@ -131,7 +133,5 @@ def update_service_definition(args_parser):
     
 
 if __name__ == '__main__':
-    updated_types = False
-    updated_templates = False
     args_parser = parseArguments()
     update_service_definition(args_parser)
