@@ -26,6 +26,12 @@ def main():
 
 
 def enable_copy_attachments(input_fc, output_fc):
+
+    # Check if the input feature class has attachments table
+    inputRow = input_fc + '__ATTACH'
+    if not arcpy.Exists(inputRow):
+        return 
+    
     # Enable Attachments
     arcpy.AddMessage("Enabling Attachments")
     arcpy.EnableAttachments_management(output_fc)
@@ -34,7 +40,6 @@ def enable_copy_attachments(input_fc, output_fc):
     # Copy Attachments from Input feature class to Temp feature class.
     arcpy.AddMessage("Copying Attachments..")
 
-    inputRow = input_fc + '__ATTACH'
     outputTable = output_fc + '__ATTACH'
 
     try:
