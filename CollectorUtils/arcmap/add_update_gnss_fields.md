@@ -7,20 +7,20 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 
 | Attribute            | Field Alias             | Field Name           | Field Type  | Domain               | Notes                                                                                    |
 |----------------------|-------------------------|----------------------|-------------|----------------------|------------------------------------------------------------------------------------------|
-| Receiver Name        | Receiver Name           | ESRIGNSS_RECEIVER    | string (50) |                      |                                                                                          |
-| Horizontal Accuracy  | Horizontal Accuracy (m) | ESRIGNSS_H_RMS       | double      |                      |                                                                                          |
-| Vertical Accuracy    | Vertical Accuracy (m)   | ESRIGNSS_V_RMS       | double      |                      |                                                                                          |
+| Receiver name        | Receiver Name           | ESRIGNSS_RECEIVER    | String(50) |                      |                                                                                          |
+| Horizontal accuracy  | Horizontal Accuracy (m) | ESRIGNSS_H_RMS       | double      |                      |                                                                                          |
+| Vertical accuracy    | Vertical Accuracy (m)   | ESRIGNSS_V_RMS       | double      |                      |                                                                                          |
 | Latitude             | Latitude                | ESRIGNSS_LATITUDE    | double      |                      |                                                                                          |
 | Longitude            | Longitude               | ESRIGNSS_LONGITUDE   | double      |                      |                                                                                          |
 | Altitude             | Altitude                | ESRIGNSS_ALTITUDE    | double      |                      |                                                                                          |
 | PDOP                 | PDOP                    | ESRIGNSS_PDOP        | double      |                      |                                                                                          |
 | HDOP                 | HDOP                    | ESRIGNSS_HDOP        | double      |                      |                                                                                          |
 | VDOP                 | VDOP                    | ESRIGNSS_VDOP        | double      |                      |                                                                                          |
-| Fix Type             | Fix Type                | ESRIGNSS_FIXTYPE     | short       | ESRI_FIX_TYPE_DOMAIN |  0 - Fix not valid; 1 - GPS; 2 - Differential GPS; 4 - RTK Fixed; 5 - RTK Float |
-| Correction Age       | Correction Age          | ESRIGNSS_CORRECTIONAGE| double      |                      |                                                                                          |
-| Station ID           | Station ID              | ESRIGNSS_STATIONID   | short      | ESRI_STATION_ID_DOMAIN| Range 0-1023                                                                                      |                                             
-| Number of Satellites | Number of Satellites    | ESRIGNSS_NUMSATS     | short       | ESRI_NUM_SATS_DOMAIN | Range 0-99                                                                               |
-| Fix Time             | Fix Time                | ESRIGNSS_FIXDATETIME | date        |                      | UTC                                                                                      |
+| Fix type             | Fix Type                | ESRIGNSS_FIXTYPE     | Short       | ESRI_FIX_TYPE_DOMAIN |  0 - Fix not valid <br/>1 - GPS <br/>2 - Differential GPS <br/>4 - RTK Fixed <br/>5 - RTK Float |
+| Correction age       | Correction Age          | ESRIGNSS_CORRECTIONAGE| double      |                      |                                                                                          |
+| Station ID           | Station ID              | ESRIGNSS_STATIONID   | Short      | ESRI_STATION_ID_DOMAIN| Range: 0-1023                                                                                      |                                             
+| Number of satellites | Number of Satellites    | ESRIGNSS_NUMSATS     | Short       | ESRI_NUM_SATS_DOMAIN | Range: 0-99                                                                               |
+| Fix time             | Fix Time                | ESRIGNSS_FIXDATETIME | Date        |                      | UTC                                                                                      |
 | Average horizontal accuracy             | Average Horizontal Accuracy (m)                | ESRIGNSS_AVG_H_RMS | double       |                                                                                                          |
 | Average vertical accuracy             | Average Vertical Accuracy (m)              | ESRIGNSS_AVG_V_RMS | double       |                                                                                                      |
 | Number of positions averageed            | Averaged Positions                | ESRIGNSS_AVG_POSITIONS | Long       |                                                                                                         |
