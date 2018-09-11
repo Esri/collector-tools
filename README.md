@@ -4,7 +4,7 @@ A set of Python scripts using the [ArcGIS API for Python v1.4.1+](https://develo
 
 | Script   | Functionality     |                                                                        
 |-----------------|------------|
-| [Reset Required Fields (Python api)](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/reset_required_fields_python_api.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/ResetRequiredFields.md) |
+| [Reset Required Fields (Python api)](CollectorUtils/scripts/reset_required_fields_python_api.py) | [Documentation](CollectorUtils/pro/ResetRequiredFields.md) |
 | [Add GNSS Metadata Fields (Pro) - FeatureClass](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/add_update_gnss_fields.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/arcmap/add_update_gnss_fields.md) |
 | [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/add_update_gnss_fields_python_api.md) |
 | [Configure GNSS Popup (ArcGIS API for Python)](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/configure_gnss_popup_python_api.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/configure_gnss_popup_python_api.md) |
