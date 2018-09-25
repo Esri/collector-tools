@@ -4,11 +4,11 @@ A set of Python scripts using the [ArcGIS API for Python v1.4.1+](https://develo
 
 | Script   | Functionality     |                                                                        
 |-----------------|------------|
-| [Reset Required Fields (Python api)](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/reset_required_fields_python_api.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/ResetRequiredFields.md) |
-| [Add GNSS Metadata Fields (Pro) - FeatureClass](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/add_update_gnss_fields.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/arcmap/add_update_gnss_fields.md) |
-| [Add GNSS Metadata Fields (Pro) - Hosted Feature Service](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/add_update_gnss_fields_python_api.md) |
-| [Configure GNSS Popup (ArcGIS API for Python)](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/configure_gnss_popup_python_api.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/configure_gnss_popup_python_api.md) |
-| [ProjectZ (Model Builder)] includes [Recreate Geometry](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/recreate_geometry.py) and [Maintain Attachments](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/scripts/maintain_attachments.py) | [Documentation](https://github.com/Esri/collector-tools/blob/NB/UpdateScriptLocation/CollectorUtils/pro/project_z.md) | 
+| [Reset Required Fields (ArcGIS API for Python)](CollectorUtils/scripts/reset_required_fields_python_api.py) | [Documentation](CollectorUtils/pro/ResetRequiredFields.md) |
+| [Add GNSS Metadata Fields (Pro) - FeatureClass](CollectorUtils/scripts/add_update_gnss_fields.py) | [Documentation](CollectorUtils/arcmap/add_update_gnss_fields.md) |
+| [Add GNSS Metadata Fields (Pro) - Hosted Feature Service (ArcGIS API for Python)](CollectorUtils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](CollectorUtils/pro/add_update_gnss_fields_python_api.md) |
+| [Configure GNSS Popup (ArcGIS API for Python)](CollectorUtils/scripts/configure_gnss_popup_python_api.py) | [Documentation](CollectorUtils/pro/configure_gnss_popup_python_api.md) |
+| [ProjectZ (Model Builder)](CollectorUtils/pro/project_z.md) includes [Recreate Geometry](CollectorUtils/scripts/recreate_geometry.py) and [Maintain Attachments](CollectorUtils/scripts/maintain_attachments.py) | [Documentation](CollectorUtils/pro/project_z.md) | 
  
 The tools have been combined into a single toolbox in ArcGIS Pro:
 
@@ -32,7 +32,7 @@ The tools have been combined into a single toolbox in ArcGIS Pro:
 
  ## For ArcMap
 
- If you are still using ArcMap, we offer a toolbox and associated python scripts that works with ArcMap 10.4 or higher [here](arcmap/collectorutils_arcmap.md).
+ If you are still using ArcMap, we offer a toolbox and associated python scripts that works with ArcMap 10.4 or higher [here](CollectorUtils/arcmap/collectorutils_arcmap.md).
 
 ## Issues
 
