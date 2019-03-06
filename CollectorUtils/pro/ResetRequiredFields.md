@@ -1,23 +1,11 @@
 # Reset Required Fields
+Note: The following information applies to working with Hosted Feature Services in ArcGIS Online or Portal. If you're working with ArcGIS Server Feature Services, please email Collector4ArcGIS@esri.com for assistance with that workflow.
+
 Sets the "required" fields to be null rather than white-space or 0 in the service definition template information.
 
 Supported in ArcGIS Pro 2.0+
 
-Fields are said to be "required" in Collector if the field is not nullable. In the template information in the layer definition file, some of these fields are set to blank white-space (" ","") or to 0. These template values then auto-populate the fields in the Collector app meaning the end-user doesn't have to enter anything, when in reality, they should be forced to enter a value. The scripts automate the process of:
-
-1. From My Content in ArcGIS Online, click View Item Details for desired Feature Layer
-2. Go To Layers section of item details
-3. Click on Chevron (down arrow) next to layer you want to update
-4. Select Service URL from the menu. This should open the URL in the web browser
-5. Change URL to include highlighted text: http\://services.arcgis.com/\<orgid\>/ArcGIS/rest/admin/services/\<Servicename\>/FeatureServer/\<sublayer\>/updateDefinition
-6. In Update Layer Definition, Scroll down to “templates” section
-    1. For each field in the template that is not nullable
-    2. Change “ “ to null
-    3. Change 0 to null
-7. In Update Layer Definition, remove editing info
-    1. Find section named editingInfo
-    2. Remove property lastEditDate, should remove similar to the following: "lastEditDate" : 1455664570690
-8. Tap Update Layer Definition.If successful, should see ‘Updated Feature Service Layer:
+Fields are said to be "required" in Collector if the field is not nullable. In the template information in the layer definition file, some of these fields are set to blank white-space (" ","") or to 0. These template values then auto-populate the fields in the Collector app meaning the end-user doesn't have to enter anything, when in reality, they should be forced to enter a value. 
 
 ### Using as a Script Tool within ArcGIS Pro
 
