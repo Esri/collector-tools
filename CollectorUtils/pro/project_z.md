@@ -1,35 +1,39 @@
 # ProjectZ
-Assigns geometrical attributes to the geometry of a point (X, Y, Z), and creates a new feature class. Used when using GNSS GPS receivers with Collector to re-populate the Z-values in the correct coordinate system.
-
 Supported in ArcGIS Pro 2.0+
 
-This tool is used convert attributes to geometries. The main use case for this is when using GNSS GPS receivers with the collector app, the meta data is stored (receiver name, lat, long, altitude, accuracy...) in the attribute table but the 3D z-values may not be projected properly when stored in the database. 
+This tool is used to convert attributes to geometries. The main use-case for this is when using GNSS receivers with the Collector for ArcGIS app, the GNSS metadata is stored (receiver name, lat, long, altitude, accuracy...) in the attribute table but the 3D z-values may not be projected properly when stored in the database. 
 
-Suppose you have feature that has the following attributes where the geometry (X and Y) of the features has been projected to NAD83, but the Lat, Long, and Z attributes are still in WGS84. 
+The ProjectZ tool is a custom tool built on top of the normal Project tool found in ArcGIS Pro (https://pro.arcgis.com/en/pro-app/tool-reference/data-management/project.htm), which exposes this vertical datum transformation capability.
 
-| ObjectID | Shape   | Lat       | Long        | Z         |
-|----------|---------|-----------|-------------|-----------|
-| 1        | Point | 34.057866 | -117.196879 | 369.05957 |
+**Note:** These vertical datum transformations require the separate installation of the ArcGIS Coordinate Systems Data for ArcGIS Pro. It contains the data files required for the GEOCON transformation methods and vertical transformation files for the United States (VERTCON and GEOID12B) and the world (EGM2008).
 
-This tool will create a new feature class that uses the Lat, Long, and Z attributes to create the geometry (using the orginal projection: WGS84). It carries over any other attributes as well.
+The idea behind the use of the ProjectZ tool to obtain high precision elevations, begins with the capturing of point features in the field to initially store values in the Altitude metadata field as Height Above Ellipsoid (HAE), and then to "post-process" those altitude values with the ProjectZ tool using the latest vertical datum transformations in ArcGIS Pro. 
 
 ### Run the tool within ArcGIS Pro:
+Here is a demonstration of this workflow. First let’s assume you have collected point features with GNSS metadata fields using Collector (check https://doc.arcgis.com/en/collector/ipad/help/high-accuracy-prep.htm#ESRI_SECTION1_C992B4FE465A4AFAB98A4972E336E808 for additional help) and you collect using a correction service based on the NAD83 2011 coordinate system. As a result, the values for Latitude/Longitude/Altitude in the GNSS metadata are based on NAD83 2011.
 
-1. Connect to the folder containing the "CollectorUtils" toolbox
-2. Double click on the "CollectorUtils_Pro" toolbox that should be shown in the Catalog panel
-3. Double click the "ProjectZ" model tool (in the "GeneralUtils" toolset)
-4. Choose your inputs
-    1. Input Features - This is the point feature class that you would like to update the geometry of and project
-    2. Input Coordinate System - This is the Coordinate System of the X (long), Y (long), and Z (altitude) values. NOT necessarily the CS of the feature class
-    3. X-Value Coordinates - The field that stores the X values or Longitude information (attempts to auto-populate)
-    4. Y-Value Coordinates - The field that stores the Y values or Latitude information (attempts to auto-populate)
-    5. Z-Value Coordinates - The field that stores the Z values or Elevation/Altitude information (attempts to auto-populate)
-    6. Output Features - The location of the output feature class
-    7. Output Coordinate System - The coordinate system the output feature class should be use
-    8. Geographic Transformation - The transform to use when converting coordinates systems (updates when input feature class, input coordinate system, and output coordinate system are selected)
-5. Click Run
+<img src="https://user-images.githubusercontent.com/24723464/55260526-e2920a00-5225-11e9-814d-504f86dcd822.png" alt="Tool1" width="250" height="350">
 
-![Alt text](images/ProjectZ_interface.JPG "Interface")
+Select your collected feature class as the “Input Features”, and “Input Coordinate System” is the correction service coordinate system. We're using a NAD83 2011 basestation, thus the “Input Coordinate System” is NAD 1983 2011 for both XY and Z. For Z value, NAD 1983 2011 is ellipsoidal-based vertical datum. 
+
+<img src="https://user-images.githubusercontent.com/24723464/55260856-b4f99080-5226-11e9-80d9-e1d3febb00dd.png" alt="Tool2" width="250" height="350">
+
+X-value/Y-value/Z-value are auto-populated from GNSS metadata fields.
+
+Then you select the location of the output feature class you would like to save as “Output Features” and select its “Output Coordinate System”. If you are interested in elevation, the coordinate is not based on Ellipsoidal. It is Gravity-based vertical datum. NAVD 1988 is selected. 
+
+<img src="https://user-images.githubusercontent.com/24723464/55260979-fb4eef80-5226-11e9-919e-d10471597676.png" alt="Tool3" width="250" height="350">
+
+Geographic Transformation is auto-populated with geoid12b model. Here is the final configuration of ProjectZ tool. 
+
+<img src="https://user-images.githubusercontent.com/24723464/55260987-0013a380-5227-11e9-9ed9-5a219b727edd.png" alt="Tool4" width="250" height="350">
+
+Run the tool, the output feature class is Z enabled with vertical datum NAVD 1988. The elevation is shown as Z value. (Use the Add XY tool to add a POINT_Z field to the attribute table. **Note** the original values in the Altitude field remain untouched.)
+
+<img src="https://user-images.githubusercontent.com/24723464/55261242-a52e7c00-5227-11e9-9d81-84d748a98b49.png" alt="Tool5" width="300" height="400">
+
+With this ProjectZ geoprocessing tool, you can postprocess your feature class with accurate elevation as Z value. This will streamline your workflow to collect elevation with Collector. You can not only use this tool to capture elevation or Z value but also as a workaround for other datum transformation limitation existing in Collector like grid based datum transformation. 
+
 
 ### What it does
 1. Calls the [Recreate Geometry](scripts/recreate_geometry.md) tool to create a new feature class using the specified attributes as the geometry
