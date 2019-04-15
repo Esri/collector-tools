@@ -30,7 +30,7 @@ Geographic Transformation is auto-populated with geoid12b model. Here is the fin
 
 Run the tool, the output feature class is Z enabled with vertical datum NAVD 1988. The elevation is shown as Z value. 
 
-Once the tool completes, it automatically adds the following columns into the attribute table of the output feature class: POINT_X, POINT_Y, POINT_Z. The POINT_Z field contains the newly transformed Z values.
+Once the tool completes successfully, a POINT_X, POINT_Y, and POINT_Z field have been added into the attribute table of the output feature class. The POINT_Z field contains the newly transformed Z values.
 
 <img src="https://user-images.githubusercontent.com/24723464/55261242-a52e7c00-5227-11e9-9d81-84d748a98b49.png" alt="Tool5" width="300" height="400">
 
