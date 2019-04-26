@@ -20,7 +20,7 @@ import os
 def main():
     # Get all of the input parameters as text
     parameters = arcpy.GetParameterInfo()
-    input_fc = parameters[0].valueAsText    
+    input_fc = parameters[0].valueAsText
     output_fc = parameters[1].valueAsText
     enable_copy_attachments(input_fc, output_fc)
 
@@ -29,9 +29,14 @@ def enable_copy_attachments(input_fc, output_fc):
 
     # Check if the input feature class has attachments table
     inputRow = input_fc + '__ATTACH'
+
     if not arcpy.Exists(inputRow):
-        return 
-    
+        desc = arcpy.Describe(input_fc)
+        inputRow = desc.Path.split('.')[0] + '.gdb\\' + desc.Name + '__ATTACH'
+                            
+        if not arcpy.Exists(inputRow):
+            return 
+            
     # Enable Attachments
     arcpy.AddMessage("Enabling Attachments")
     arcpy.EnableAttachments_management(output_fc)
