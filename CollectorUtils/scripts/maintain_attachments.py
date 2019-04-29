@@ -35,7 +35,8 @@ def enable_copy_attachments(input_fc, output_fc):
         inputRow = desc.Path.split('.')[0] + '.gdb\\' + desc.Name + '__ATTACH'
                             
         if not arcpy.Exists(inputRow):
-            return 
+            arcpy.AddError("Unable to locate the attachment table for the input feature class.")
+            return
             
     # Enable Attachments
     arcpy.AddMessage("Enabling Attachments")
@@ -51,7 +52,7 @@ def enable_copy_attachments(input_fc, output_fc):
         arcpy.Append_management(inputRow, outputTable)
         arcpy.AddMessage("Copied Attachments..")
     except Exception as e:
-        arcpy.Error(e)
+        arcpy.AddError(e)
 
 if __name__ == "__main__":
     """
