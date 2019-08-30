@@ -18,7 +18,7 @@ The output feature class from the ProjectZ tool also maintains any existing atta
 
 If using OBJECT ID's for the attachments relationship, you will see the following error message when adding your input feature class into the ProjectZ tool:
 
-<img src="https://user-images.githubusercontent.com/24723464/63988931-4188d300-ca93-11e9-8e75-bc4a8941a268.png" alt="Tool2" width="550" height="150">
+<img src="https://user-images.githubusercontent.com/24723464/63988931-4188d300-ca93-11e9-8e75-bc4a8941a268.png" alt="Tool2" width="450" height="150">
 
 In this case, you need to run the [Migrate Relationship Class tool](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/migrate-relationship-class-tool.htm) using the `__ATTACHREL` relationship class as input to convert the relationship from OBJECTID-based to GLOBALID-based.
 
