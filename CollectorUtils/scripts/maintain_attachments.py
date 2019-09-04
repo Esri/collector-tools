@@ -26,18 +26,16 @@ def main():
 
 
 def enable_copy_attachments(input_fc, output_fc):
-
     # Check if the input feature class has attachments table
-    inputRow = input_fc + '__ATTACH'
-
-    if not arcpy.Exists(inputRow):
+    input_attachment_table = input_fc + '__ATTACH'
+    if not arcpy.Exists(input_attachment_table):
         desc = arcpy.Describe(input_fc)
-        inputRow = desc.Path.split('.')[0] + '.gdb\\' + desc.Name + '__ATTACH'
+        input_attachment_table = desc.Path.split('.')[0] + '.gdb\\' + desc.Name + '__ATTACH'
                             
-        if not arcpy.Exists(inputRow):
+        if not arcpy.Exists(input_attachment_table):
             arcpy.AddError("Unable to locate the attachment table for the input feature class.")
             return
-            
+
     # Enable Attachments
     arcpy.AddMessage("Enabling Attachments")
     arcpy.EnableAttachments_management(output_fc)
@@ -49,7 +47,28 @@ def enable_copy_attachments(input_fc, output_fc):
     outputTable = output_fc + '__ATTACH'
 
     try:
-        arcpy.Append_management(inputRow, outputTable)
+        # Check if the input feature class was related to the attachment tables via the ObjectID field.
+        input_table_desc = arcpy.Describe(input_attachment_table)
+        field_rel_objectID = [field for field in input_table_desc.fields if field.name.lower() == 'rel_objectid']
+
+        # If the input attachment table has REL_OBJECTID field then remap GUID fields between input and output attachment table.
+        if field_rel_objectID:
+            field_rel_globalID = [field for field in input_table_desc.fields if field.type.lower() == 'guid']
+            if field_rel_globalID:
+                output_field = field_rel_globalID[0]
+            else:
+                arcpy.AddError("Can't copy attachments...")
+
+            field_mappings = arcpy.FieldMappings()
+            field_mappings.addTable(outputTable)
+
+            output_table_globalID = [field for field in field_mappings.fields if field.type.lower() == 'guid'][0]
+            field_mappings.fieldMappings[field_mappings.findFieldMapIndex(output_table_globalID.name)].addInputField(input_attachment_table,output_field.name)
+            global_id_FieldMap.outputField = output_field
+
+            arcpy.Append_management(input_attachment_table, outputTable, 'NO_TEST', field_mappings)
+        else:
+            arcpy.Append_management(input_attachment_table, outputTable)
         arcpy.AddMessage("Copied Attachments..")
     except Exception as e:
         arcpy.AddError(e)
