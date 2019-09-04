@@ -9,6 +9,19 @@ The ProjectZ tool is a custom tool built on top of the normal Project tool found
 
 The idea behind the use of the ProjectZ tool to obtain high precision elevations, begins with the capturing of point features in the field to initially store values in the Altitude metadata field as Height Above Ellipsoid (HAE), and then to "post-process" those altitude values with the ProjectZ tool using the latest vertical datum transformations in ArcGIS Pro. 
 
+### Maintaining Attachments
+
+The output feature class from the ProjectZ tool also maintains any existing attachments that were related to the input feature class. 
+
+**Note** For existing attachments on the input feature class, the attachment relationship class `__ATTACHREL` needs to have been generated using GLOBAL ID's and not OBJECT ID's. When viewing the properties of the `__ATTACHREL` relationship class, it should appear similar to the following where the Primary Key is `GLOBALID` and the Foreign Key is `REL_GLOBALID`:
+<img src="https://user-images.githubusercontent.com/24723464/63988726-806a5900-ca92-11e9-8b90-e1e891b5f66e.png" alt="Tool2" width="500" height="400">
+
+If using OBJECT ID's for the attachments relationship, you will see the following error message when adding your input feature class into the ProjectZ tool:
+
+<img src="https://user-images.githubusercontent.com/24723464/63988931-4188d300-ca93-11e9-8e75-bc4a8941a268.png" alt="Tool2" width="450" height="150">
+
+In this case, you need to run the [Migrate Relationship Class tool](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/migrate-relationship-class-tool.htm) using the `__ATTACHREL` relationship class as input to convert the relationship from OBJECTID-based to GLOBALID-based.
+
 ### Run the tool within ArcGIS Pro:
 Here is a demonstration of this workflow. First let’s assume you have collected point features with GNSS metadata fields using Collector (check https://doc.arcgis.com/en/collector/ipad/help/high-accuracy-prep.htm#ESRI_SECTION1_C992B4FE465A4AFAB98A4972E336E808 for additional help) and you collect using a correction service based on the NAD83 2011 coordinate system. As a result, the values for Latitude/Longitude/Altitude in the GNSS metadata are based on NAD83 2011.
 
