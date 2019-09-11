@@ -59,14 +59,23 @@ def enable_copy_attachments(input_fc, output_fc):
             else:
                 arcpy.AddError("Can't copy attachments...")
 
-            field_mappings = arcpy.FieldMappings()
-            field_mappings.addTable(outputTable)
+            output_table_field_mappings = arcpy.FieldMappings()
+            output_table_field_mappings.addTable(outputTable)
 
-            output_table_globalID = [field for field in field_mappings.fields if field.type.lower() == 'guid'][0]
-            field_mappings.fieldMappings[field_mappings.findFieldMapIndex(output_table_globalID.name)].addInputField(input_attachment_table,output_field.name)
-            global_id_FieldMap.outputField = output_field
+            input_table_field_mappings = arcpy.FieldMappings()
+            input_table_field_mappings.addTable(input_attachment_table)
 
-            arcpy.Append_management(input_attachment_table, outputTable, 'NO_TEST', field_mappings)
+            output_table_globalID = [field for field in output_table_field_mappings.fields if field.type.lower() == 'guid'][0]
+            field_index = output_table_field_mappings.findFieldMapIndex(output_table_globalID.name)
+            fmap = output_table_field_mappings.fieldMappings[field_index]
+            output_table_field_mappings.removeFieldMap(field_index)
+            fmap.addInputField(input_attachment_table,output_field.name)
+            output_table_field_mappings.addFieldMap(fmap)
+
+            for input_field_map in input_table_field_mappings.fieldMappings:
+                output_table_field_mappings.addFieldMap(input_field_map)
+
+            arcpy.Append_management(input_attachment_table, outputTable, 'NO_TEST', output_table_field_mappings)
         else:
             arcpy.Append_management(input_attachment_table, outputTable)
         arcpy.AddMessage("Copied Attachments..")
