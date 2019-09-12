@@ -28,7 +28,9 @@ Geographic Transformation is auto-populated with geoid12b model. Here is the fin
 
 <img src="https://user-images.githubusercontent.com/24723464/55260987-0013a380-5227-11e9-9ed9-5a219b727edd.png" alt="Tool4" width="250" height="350">
 
-Run the tool, the output feature class is Z enabled with vertical datum NAVD 1988. The elevation is shown as Z value. (Use the Add XY tool to add a POINT_Z field to the attribute table. **Note** the original values in the Altitude field remain untouched.)
+Run the tool, the output feature class is Z enabled with vertical datum NAVD 1988. The elevation is shown as Z value. 
+
+Once the tool completes successfully, a POINT_X, POINT_Y, and POINT_Z field have been added into the attribute table of the output feature class. The POINT_Z field contains the newly transformed Z values.
 
 <img src="https://user-images.githubusercontent.com/24723464/55261242-a52e7c00-5227-11e9-9d81-84d748a98b49.png" alt="Tool5" width="300" height="400">
 
