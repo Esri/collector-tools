@@ -22,6 +22,8 @@ If using OBJECT ID's for the attachments relationship, you will see the followin
 
 In this case, you need to run the [Migrate Relationship Class tool](https://pro.arcgis.com/en/pro-app/tool-reference/data-management/migrate-relationship-class-tool.htm) using the `__ATTACHREL` relationship class as input to convert the relationship from OBJECTID-based to GLOBALID-based.
 
+**Note** For the name of the attachments related table, ensure it has two underscores in its name, `__ATTACH`. This naming convention is standard when attachments have been enabled and is the name that the tool looks for when maintaining attachments.
+
 ### Run the tool within ArcGIS Pro:
 Here is a demonstration of this workflow. First let’s assume you have collected point features with GNSS metadata fields using Collector (check https://doc.arcgis.com/en/collector/ipad/help/high-accuracy-prep.htm#ESRI_SECTION1_C992B4FE465A4AFAB98A4972E336E808 for additional help) and you collect using a correction service based on the NAD83 2011 coordinate system. As a result, the values for Latitude/Longitude/Altitude in the GNSS metadata are based on NAD83 2011.
 
