@@ -32,4 +32,5 @@ Run the [reset_required_fields_python_api.py](scripts/reset_required_fields_pyth
 
 ![capture](https://user-images.githubusercontent.com/24723464/38956897-d9a2efae-430d-11e8-8a82-3505089164bc.PNG)
 
-
+### Learn more  
+See [Require the information you need from the field](https://www.esri.com/arcgis-blog/products/apps/field-mobility/capture-required-information-from-field/) for more about this tool.
