@@ -1,5 +1,5 @@
 # Reset Required Fields
-**Note: The following information applies to working with Hosted Feature Services in ArcGIS Online or Portal. If you're working with ArcGIS Server Feature Services, please email Collector4ArcGIS@esri.com for assistance with that workflow.**
+**Note: This tool applies to working with Hosted Feature Services in ArcGIS Online or Portal. If you're working with ArcGIS Server Feature Services there is a different workflow to utilize, please go [here](https://support.esri.com/en/Technical-Article/000022706).**
 
 Sets the "required" fields to be null rather than white-space or 0 in the service definition template information.
 
