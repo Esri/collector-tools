@@ -1,18 +1,40 @@
-A set of Python scripts using the [ArcGIS API for Python v1.4.1+](https://developers.arcgis.com/python/) and ArcGIS Pro to perform collector specific tasks
+A set of utilities to help configure web maps and feature layers for use with Collector for ArcGIS. Browse the sections below, or jump to a specific section.
 
-## Features
+[Notebooks](#notebooks)
 
-| Script   | Functionality     |                                                                        
+[Scripts](#scripts)
+
+[Toolboxes](#toolboxes)
+
+## Notebooks
+
+Jupyter notebooks are provided to demonstrate various methods to streamline and automate configuration, administration, and deployment of data collection projects.
+
+| Functionality 
+|-----------------|
+| [Exclude web maps from Collector](https://github.com/Esri/collector-tools/blob/master/notebooks/UseInCollector.ipynb) 
+| [Configure search for a web map](https://github.com/Esri/collector-tools/blob/master/notebooks/LayerSearchConfig.ipynb)
+
+## Scripts
+
+Supports ArcGIS API for Python v1.4.1 (https://developers.arcgis.com/python/) 
+
+| Functionality   | Format |                                                                        
 |-----------------|------------|
-| [Reset Required Fields (ArcGIS API for Python)](CollectorUtils/scripts/reset_required_fields_python_api.py) | [Documentation](CollectorUtils/pro/ResetRequiredFields.md) |
-| [Add GNSS Metadata Fields (Pro) - FeatureClass](CollectorUtils/scripts/add_update_gnss_fields.py) | [Documentation](CollectorUtils/arcmap/add_update_gnss_fields.md) |
-| [Add GNSS Metadata Fields (Pro) - Hosted Feature Service (ArcGIS API for Python)](CollectorUtils/scripts/add_update_gnss_fields_python_api.py) | [Documentation](CollectorUtils/pro/add_update_gnss_fields_python_api.md) |
-| [Configure GNSS Popup (ArcGIS API for Python)](CollectorUtils/scripts/configure_gnss_popup_python_api.py) | [Documentation](CollectorUtils/pro/configure_gnss_popup_python_api.md) |
-| [ProjectZ (Model Builder)](CollectorUtils/pro/project_z.md) includes [Recreate Geometry](CollectorUtils/scripts/recreate_geometry.py) and [Maintain Attachments](CollectorUtils/scripts/maintain_attachments.py) | [Documentation](CollectorUtils/pro/project_z.md) | 
- 
-The tools have been combined into a single toolbox in ArcGIS Pro:
+| [Reset Required Fields (ArcGIS API for Python)](CollectorUtils/pro/ResetRequiredFields.md)  | [Python script](https://github.com/Esri/collector-tools/blob/master/CollectorUtils/scripts/reset_required_fields_python_api.py) |
+| [Add GNSS Metadata Fields (Pro) - FeatureClass](CollectorUtils/arcmap/add_update_gnss_fields.md) | [Python Script](CollectorUtils/scripts/add_update_gnss_fields.py) |
+| [Add GNSS Metadata Fields (Pro) - Hosted Feature Service (ArcGIS API for Python)](CollectorUtils/pro/add_update_gnss_fields_python_api.md)|  [Python Script](CollectorUtils/scripts/add_update_gnss_fields_python_api.py) |
+| [Configure GNSS Popup (ArcGIS API for Python)](CollectorUtils/pro/configure_gnss_popup_python_api.md) | [Python Script](CollectorUtils/scripts/configure_gnss_popup_python_api.py) | 
+| [Project Z](CollectorUtils/pro/project_z.md) | [Model Builder](CollectorUtils/pro/project_z.md) | 
+
+## Toolboxes
+
+The scripts and ModelBuilder are also available as a [GeoProcessing Toolbox](https://github.com/Esri/collector-tools/blob/master/CollectorUtils/pro/CollectorUtils_Pro.tbx) for use in ArcGIS Pro.
+
 
 ![capture](https://user-images.githubusercontent.com/24723464/38952752-840ea9e0-4301-11e8-94d7-5bd824f708cb.PNG)
+
+ If you are still using ArcMap, we offer a [GeoProcessing Toolbox](https://github.com/Esri/collector-tools/blob/master/CollectorUtils/arcmap/CollectorUtils_ArcMap.tbx) and associated python scripts that works with ArcMap 10.4 or higher.
 
 ## Dependencies
  - arcpy 3.4+
@@ -20,23 +42,35 @@ The tools have been combined into a single toolbox in ArcGIS Pro:
 
 ## Instructions
 
-1. Clone or download this repository
-2. If you are interested in running the scripts outside of ArcGIS Pro, install ArcGIS API for Python package as described [here](https://developers.arcgis.com/python/guide/install-and-set-up/).
-3. If you prefer to use in ArcGIS Pro, right-click on Toolboxes, and select **Add Toolbox**. Navigate and select **CollectorUtils_Pro** toolbox. 
-4. Run the tools in the toolbox (Pro requires 2.0+) or run the scripts from command line
+<details>
+<summary>
+Script instructions
+</summary>
+
+1. Install ArcGIS API for Python package as described [here](https://developers.arcgis.com/python/guide/install-and-set-up/).
+1. Clone or download this repository.
+1. Run the scripts from command line.
+</details>
+
+<details>
+<summary>
+Toolbox instructions
+</summary>
+
+1. Clone or download this repository.
+1. If you prefer to use in ArcGIS Pro, right-click on Toolboxes, and select **Add Toolbox**. Navigate and select **CollectorUtils_Pro** toolbox. 
+1. Run the tools in the toolbox (Pro requires 2.0+) or run the scripts from command line.
+</details>
 
 ## Resources
 
  * [Collector for ArcGIS](http://www.esri.com/products/collector-for-arcgis)
  * [ArcGIS API for Python](https://developers.arcgis.com/python/)
-
- ## For ArcMap
-
- If you are still using ArcMap, we offer a toolbox and associated python scripts that works with ArcMap 10.4 or higher [here](CollectorUtils/arcmap/collectorutils_arcmap.md).
+ * [ArcGIS Arcade Expressions](https://github.com/Esri/arcade-expressions)
 
 ## Issues
 
-Find a bug or want to request a new feature?  Please let us know by submitting an issue.
+Find a bug or want to request a new feature?  Please let us know by [submitting an issue](https://github.com/Esri/collector-tools/issues/new).
 
 ## Contributing
 
@@ -45,7 +79,7 @@ Please see our [guidelines for contributing](https://github.com/esri/contributin
 
 ## Licensing
 
-Copyright 2018 Esri
+Copyright 2020 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
