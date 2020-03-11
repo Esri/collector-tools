@@ -14,6 +14,7 @@ Jupyter notebooks are provided to demonstrate various methods to streamline and 
 |-----------------|
 | [Exclude web maps from Collector](https://github.com/Esri/collector-tools/blob/master/notebooks/UseInCollector.ipynb) 
 | [Configure search for a web map](https://github.com/Esri/collector-tools/blob/master/notebooks/LayerSearchConfig.ipynb)
+| [Generate app links for Collector](https://github.com/Esri/collector-tools/blob/master/notebooks/GenerateCollectorAppLinks.ipynb)
 
 ## Scripts
 
