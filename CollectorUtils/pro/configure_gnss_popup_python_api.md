@@ -1,5 +1,5 @@
 # Configure GNSS Metadata fields visibility and Popup
-Supported in ArcGIS Pro 2.0+ - requires Python API version 1.4.2  - https://developers.arcgis.com/python/guide/install-and-set-up/
+Supported in ArcGIS Pro 2.0+ - requires Python API version 1.4.2+  - https://developers.arcgis.com/python/guide/install-and-set-up/
 
 | Field name | Alias | Format |
 |---|---|---|
