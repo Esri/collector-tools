@@ -94,6 +94,30 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
         
         for field_info in fieldInfos:
             # Configure popup and visibility for GNSSMetadata fields
+            if field_info['fieldName'].upper() == 'ESRIGNSS_DIRECTION':
+                if 'format' in field_info.keys():
+                    field_info['format']['places'] = 2
+                else:
+                    field_info['format'] = {'places' : 2}
+                field_info['visible'] = True
+                field_info['isEditable'] = False
+
+            if field_info['fieldName'].upper() == 'ESRIGNSS_SPEED':
+                if 'format' in field_info.keys():
+                    field_info['format']['places'] = 2
+                else:
+                    field_info['format'] = {'places' : 2}
+                field_info['visible'] = True
+                field_info['isEditable'] = False
+
+            if field_info['fieldName'].upper() == 'ESRISNSR_AZIMUTH':
+                if 'format' in field_info.keys():
+                    field_info['format']['places'] = 2
+                else:
+                    field_info['format'] = {'places' : 2}
+                field_info['visible'] = True
+                field_info['isEditable'] = False
+
             if field_info['fieldName'].upper() == 'ESRIGNSS_H_RMS':
                 if 'format' in field_info.keys():
                     field_info['format']['places'] = 2
@@ -202,7 +226,8 @@ def searchItems_UpdateGNSSMetadataFieldsPopup(args_parser):
             if field_info['fieldName'].upper() == 'ESRIGNSS_RECEIVER' or field_info[
                 'fieldName'].upper() == 'ESRIGNSS_STATIONID' or \
                             field_info['fieldName'].upper() == 'ESRIGNSS_FIXTYPE' or field_info[
-                'fieldName'].upper() == 'ESRIGNSS_NUMSATS' or \
+                'fieldName'].upper() == 'ESRIGNSS_NUMSATS' or field_info[
+                'fieldName'].upper() == 'ESRIGNSS_POSITIONSOURCETYPE' or \
                             field_info['fieldName'].upper() == 'ESRIGNSS_AVG_POSITIONS':
                 field_info['visible'] = True
                 field_info['isEditable'] = False

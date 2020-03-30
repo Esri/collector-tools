@@ -114,7 +114,46 @@ def check_and_create_domains(geodatabase):
                                       split_policy="DEFAULT",
                                       merge_policy="DEFAULT")
         arcpy.SetValueForRangeDomain_management(geodatabase, "ESRI_STATION_ID_DOMAIN", 0, 1023)
+    if 'ESRI_POSITIONSOURCETYPE_DOMAIN' in domain_names:
+        for domain in domains:
+            if domain.name == 'ESRI_POSITIONSOURCETYPE_DOMAIN':
+                # check if cvs 0,1,2,3,4 are in the codedValues
+                values = [cv for cv in domain.codedValues]
+                if not set(set([0, 1, 2, 3, 4])).issubset(values):
+                    arcpy.AddError("ESRI_POSITIONSOURCETYPE_DOMAIN is missing a coded value pair.")
+                    return
+    else:
+        # Add the domain and values
+        arcpy.AddMessage('Adding ESRI_POSITIONSOURCETYPE_DOMAIN domain to parent geodatabase...')
 
+        arcpy.CreateDomain_management(in_workspace=geodatabase,
+                                      domain_name="ESRI_POSITIONSOURCETYPE_DOMAIN",
+                                      domain_description="Position Source Type",
+                                      field_type="SHORT",
+                                      domain_type="CODED",
+                                      split_policy="DEFAULT",
+                                      merge_policy="DEFAULT")
+
+        arcpy.AddCodedValueToDomain_management(in_workspace=geodatabase,
+                                               domain_name="ESRI_POSITIONSOURCETYPE_DOMAIN",
+                                               code="0",
+                                               code_description="Unknown")
+        arcpy.AddCodedValueToDomain_management(in_workspace=geodatabase,
+                                               domain_name="ESRI_POSITIONSOURCETYPE_DOMAIN",
+                                               code="1",
+                                               code_description="User defined")
+        arcpy.AddCodedValueToDomain_management(in_workspace=geodatabase,
+                                               domain_name="ESRI_POSITIONSOURCETYPE_DOMAIN",
+                                               code="2",
+                                               code_description="Integrated (System) Location Provider")
+        arcpy.AddCodedValueToDomain_management(in_workspace=geodatabase,
+                                               domain_name="ESRI_POSITIONSOURCETYPE_DOMAIN",
+                                               code="3",
+                                               code_description="External GNSS Receiver")
+        arcpy.AddCodedValueToDomain_management(in_workspace=geodatabase,
+                                               domain_name="ESRI_POSITIONSOURCETYPE_DOMAIN",
+                                               code="4",
+                                               code_description="Network Location Provider")
 
 def add_gnss_fields(feature_layer):
     """
@@ -162,6 +201,39 @@ def add_gnss_fields(feature_layer):
         
         # Add GNSS metadata fields
         existingFields = [field.name for field in arcpy.ListFields(feature_layer)]
+
+        if 'ESRIGNSS_DIRECTION' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_DIRECTION',
+                                      field_type="DOUBLE",
+                                      field_alias='Direction of travel (°)',
+                                      field_is_nullable="NULLABLE"
+                                      )
+
+        if 'ESRIGNSS_SPEED' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_SPEED',
+                                      field_type="DOUBLE",
+                                      field_alias='Speed (km/h)',
+                                      field_is_nullable="NULLABLE"
+                                      )
+
+        if 'ESRISNSR_AZIMUTH' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRISNSR_AZIMUTH',
+                                      field_type="DOUBLE",
+                                      field_alias='Compass reading (°)',
+                                      field_is_nullable="NULLABLE"
+                                      )
+
+        if 'ESRIGNSS_POSITIONSOURCETYPE' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_POSITIONSOURCETYPE',
+                                      field_type="SHORT",
+                                      field_alias='Position source type',
+                                      field_is_nullable="NULLABLE",
+                                      field_domain="ESRI_POSITIONSOURCETYPE_DOMAIN"
+                                      )
         
         if 'ESRIGNSS_RECEIVER' not in existingFields:
             arcpy.AddField_management(feature_layer,
@@ -318,7 +390,7 @@ def add_gnss_fields(feature_layer):
         
         # Update GNSS metadata fields with Domains
         domainFields = [field for field in arcpy.ListFields(feature_layer) if field.name == 'ESRIGNSS_FIXTYPE' or \
-                          field.name == 'ESRIGNSS_STATIONID' or field.name == 'ESRIGNSS_NUMSATS']
+                          field.name == 'ESRIGNSS_STATIONID' or field.name == 'ESRIGNSS_NUMSATS' or field.name == 'ESRIGNSS_POSITIONSOURCETYPE']
         
         for field in domainFields:
             if field.name == 'ESRIGNSS_FIXTYPE' and not field.domain:
@@ -331,6 +403,10 @@ def add_gnss_fields(feature_layer):
             
             if field.name == 'ESRIGNSS_NUMSATS' and not field.domain:
                 arcpy.AssignDomainToField_management(feature_layer, field, 'ESRI_NUM_SATS_DOMAIN')
+                continue
+
+            if field.name == 'ESRIGNSS_POSITIONSOURCETYPE' and not field.domain:
+                arcpy.AssignDomainToField_management(feature_layer, field, 'ESRI_POSITIONSOURCETYPE_DOMAIN')
                 continue
             
         arcpy.AddMessage("Successfully updated GPS Metadata fields with domains.\n")

@@ -7,9 +7,17 @@ This script/tool attempts to add the following fields to a Point Feature Class:
 
 | Attribute            | Field Alias             | Field Name           | Field Type  | Domain               | Notes                                                                                    |
 |----------------------|-------------------------|----------------------|-------------|----------------------|------------------------------------------------------------------------------------------|
+| Direction of travel        | Direction of travel (°)           | ESRIGNSS_DIRECTION    | double |                      |
+
+| Speed        | Speed (km/h)           | ESRIGNSS_SPEED    | double |                      |
+
+| Compass reading        | Compass reading (°)           | ESRISNSR_AZIMUTH    | double |                      |
+
+| Position source type        | Position source type           | ESRIGNSS_POSITIONSOURCETYPE    | Short |        0 - Unknown <br/>1 - User defined <br/>2 - Integrated (System) Location Provider <br/>3 - External GNSS Receiver <br/>4 - Network Location Provider              |
+
 | Receiver name        | Receiver Name           | ESRIGNSS_RECEIVER    | String(50) |                      |                                                                                          |
-| Horizontal nccuracy  | Horizontal Accuracy (m) | ESRIGNSS_H_RMS       | double      |                      |                                                                                          |
-| Vertical nccuracy    | Vertical Accuracy (m)   | ESRIGNSS_V_RMS       | double      |                      |                                                                                          |
+| Horizontal accuracy  | Horizontal Accuracy (m) | ESRIGNSS_H_RMS       | double      |                      |                                                                                          |
+| Vertical accuracy    | Vertical Accuracy (m)   | ESRIGNSS_V_RMS       | double      |                      |                                                                                          |
 | Latitude             | Latitude                | ESRIGNSS_LATITUDE    | double      |                      |                                                                                          |
 | Longitude            | Longitude               | ESRIGNSS_LONGITUDE   | double      |                      |                                                                                          |
 | Altitude             | Altitude                | ESRIGNSS_ALTITUDE    | double      |                      |                                                                                          |
