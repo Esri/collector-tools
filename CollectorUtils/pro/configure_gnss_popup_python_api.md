@@ -1,7 +1,32 @@
 # Configure GNSS Metadata fields visibility and Popup
-Supported in ArcGIS Pro 2.0+ - requires Python API version 1.4.2  - https://developers.arcgis.com/python/guide/install-and-set-up/
+Supported in ArcGIS Pro 2.0+ - requires Python API version 1.4.2+  - https://developers.arcgis.com/python/guide/install-and-set-up/
 
-![capture](https://user-images.githubusercontent.com/26557666/28002733-a8560878-64ec-11e7-826b-fdace77cef6a.PNG)
+| Field name | Alias | Format |
+|---|---|---|
+| ESRIGNSS_DIRECTION | Direction of travel (°) | 2 decimal places |
+| ESRIGNSS_SPEED | Speed (km/h) | 2 decimal places |
+| ESRISNSR_AZIMUTH | Compass reading (°) | 2 decimal places |
+| ESRIGNSS_POSITIONSOURCETYPE | Position source type | NA |
+| ESRIGNSS_RECEIVER | Receiver Name | NA |
+| ESRIGNSS_H_RMS | Horizontal Accuracy (m) | 2 decimal places |
+| ESRIGNSS_V_RMS | Vertical Accuracy (m) | 2 decimal places |
+| ESRIGNSS_LATITUDE | Latitude | 8 decimal places |
+| ESRIGNSS_LONGITUDE | Longitude | 8 decimal places |
+| ESRIGNSS_ALTITUDE | Altitude | 2 decimal places |
+| ESRIGNSS_PDOP | PDOP | 2 decimal places |
+| ESRIGNSS_HDOP | HDOP | 2 decimal places |
+| ESRIGNSS_VDOP | VDOP | 2 decimal places |
+| ESRIGNSS_FIXTYPE | Fix Type | NA |
+| ESRIGNSS_CORRECTIONAGE | Correction Age (seconds) | 0 decimal places |
+| ESRIGNSS_STATIONID | Station ID | NA |
+| ESRIGNSS_NUMSATS | Number of Satellites | NA |
+| ESRIGNSS_FIXDATETIME | Fix Time | ShortDateTime, 12hr |
+| ESRIGNSS_AVG_H_RMS | Average Horizontal Accuracy (m) | 2 decimal places |
+| ESRIGNSS_AVG_V_RMS | Average Vertical Accuracy (m) | 2 decimal places |
+| ESRIGNSS_AVG_POSITIONS | Averaged Positions | NA |
+| ESRIGNSS_H_STDDEV| Standard Deviation (m) | 3 decimal places |
+
+**Note** Prior to running the tool, for hosted feature services published using ArcGIS Pro, once added into a new web map in ArcGIS Online/ArcGIS Enterprise, click `Save Layer`.
 
 # Intructions to run from Pro.
 ![image](https://user-images.githubusercontent.com/26557666/28002780-05812fbe-64ed-11e7-975e-1b7e63bc2c83.png)

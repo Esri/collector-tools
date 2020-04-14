@@ -79,6 +79,82 @@ def searchItems_addGNSSMetadataFields(args_parser):
         # Add/Update GNSS Metadata fields
         if not args_parser.remove:
 
+            # ESRIGNSS_DIRECTION
+            directionField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_DIRECTION']
+
+            if not directionField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_DIRECTION',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Direction of travel (°)',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRIGNSS_SPEED
+            speedField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_SPEED']
+
+            if not speedField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_SPEED',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Speed (km/h)',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRISNSR_AZIMUTH
+            azimuthField = [field for field in featureLayerFields if field['name'] == 'ESRISNSR_AZIMUTH']
+
+            if not azimuthField:
+                gnssMetadataFields['fields'].append({'name': 'ESRISNSR_AZIMUTH',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Compass reading (°)',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRIGNSS_POSITIONSOURCETYPE
+            positionsourcetypeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_POSITIONSOURCETYPE']
+
+            if positionsourcetypeField:
+                # Field does exist check if the domain is set.
+                if positionsourcetypeField[0]['domain'] == None:
+                    if ([operation for operation in operations if operation == 'updateDefinition']):
+                        operations.append('updateDefinition')
+
+                    positionsourcetypeFieldIndex = featureLayerFields.index(positionsourcetypeField[0])
+                    positionsourcetypeDomain = {'type': 'codedValue',
+                                     'name': 'ESRI_POSITIONSOURCETYPE_DOMAIN',
+                                     'codedValues': [{'name': 'Unknown',
+                                                      'code': 0},
+                                                     {'name': 'User defined', 'code': 1},
+                                                     {'name': 'Integrated (System) Location Provider', 'code': 2},
+                                                     {'name': 'External GNSS Receiver', 'code': 3},
+                                                     {'name': 'Network Location Provider', 'code': 4}]}
+                    featureLayerFields[positionsourcetypeFieldIndex]['domain'] = positionsourcetypeDomain
+
+            else:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_POSITIONSOURCETYPE',
+                                                     'type': 'esriFieldTypeInteger',
+                                                     'alias': 'Position source type',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': {'type': 'codedValue',
+                                                                'name': 'ESRI_POSITIONSOURCETYPE_DOMAIN',
+                                                                'codedValues': [
+                                                                    {'name': 'Unknown', 'code': 0},
+                                                                    {'name': 'User defined', 'code': 1},
+                                                                    {'name': 'Integrated (System) Location Provider', 'code': 2},
+                                                                    {'name': 'External GNSS Receiver', 'code': 3},
+                                                                    {'name': 'Network Location Provider', 'code': 4}]},
+                                                     'defaultValue': None})
+
             # ESRIGNSS_RECEIVER
             recieverField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_RECEIVER']
             
@@ -377,7 +453,11 @@ def searchItems_addGNSSMetadataFields(args_parser):
         else:
             operations.append('deleteFromDefinition')
             gnssMetadataFields = {
-                'fields': [{'name': 'ESRIGNSS_FIXDATETIME'},
+                'fields': [{'name': 'ESRIGNSS_DIRECTION'},
+                           {'name': 'ESRIGNSS_SPEED'},
+                           {'name': 'ESRISNSR_AZIMUTH'},
+                           {'name': 'ESRIGNSS_POSITIONSOURCETYPE'},
+                           {'name': 'ESRIGNSS_FIXDATETIME'},
                            {'name': 'ESRIGNSS_RECEIVER'},
                            {'name': 'ESRIGNSS_H_RMS'},
                            {'name': 'ESRIGNSS_V_RMS'},
