@@ -202,30 +202,6 @@ def add_gnss_fields(feature_layer):
         # Add GNSS metadata fields
         existingFields = [field.name for field in arcpy.ListFields(feature_layer)]
 
-        if 'ESRIGNSS_DIRECTION' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_DIRECTION',
-                                      field_type="DOUBLE",
-                                      field_alias='Direction of travel (°)',
-                                      field_is_nullable="NULLABLE"
-                                      )
-
-        if 'ESRIGNSS_SPEED' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_SPEED',
-                                      field_type="DOUBLE",
-                                      field_alias='Speed (km/h)',
-                                      field_is_nullable="NULLABLE"
-                                      )
-
-        if 'ESRISNSR_AZIMUTH' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRISNSR_AZIMUTH',
-                                      field_type="DOUBLE",
-                                      field_alias='Compass reading (°)',
-                                      field_is_nullable="NULLABLE"
-                                      )
-
         if 'ESRIGNSS_POSITIONSOURCETYPE' not in existingFields:
             arcpy.AddField_management(feature_layer,
                                       'ESRIGNSS_POSITIONSOURCETYPE',
@@ -241,22 +217,6 @@ def add_gnss_fields(feature_layer):
                                       field_type="STRING",
                                       field_length=50,
                                       field_alias='Receiver Name',
-                                      field_is_nullable="NULLABLE"
-                                      )
-        
-        if 'ESRIGNSS_H_RMS' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_H_RMS',
-                                      field_type="DOUBLE",
-                                      field_alias='Horizontal Accuracy (m)',
-                                      field_is_nullable="NULLABLE"
-                                      )
-        
-        if 'ESRIGNSS_V_RMS' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_V_RMS',
-                                      field_type="DOUBLE",
-                                      field_alias='Vertical Accuracy (m)',
                                       field_is_nullable="NULLABLE"
                                       )
 
@@ -283,6 +243,65 @@ def add_gnss_fields(feature_layer):
                                       field_alias='Altitude',
                                       field_is_nullable="NULLABLE"
                                       )
+        
+        if 'ESRIGNSS_H_RMS' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_H_RMS',
+                                      field_type="DOUBLE",
+                                      field_alias='Horizontal Accuracy (m)',
+                                      field_is_nullable="NULLABLE"
+                                      )
+        
+        if 'ESRIGNSS_V_RMS' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_V_RMS',
+                                      field_type="DOUBLE",
+                                      field_alias='Vertical Accuracy (m)',
+                                      field_is_nullable="NULLABLE"
+                                      )
+
+        if 'ESRIGNSS_FIXDATETIME' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_FIXDATETIME',
+                                      field_type="Date",
+                                      field_alias='Fix Time',
+                                      field_is_nullable="NULLABLE",
+                                      )
+
+        if 'ESRIGNSS_FIXTYPE' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_FIXTYPE',
+                                      field_type="SHORT",
+                                      field_alias='Fix Type',
+                                      field_is_nullable="NULLABLE",
+                                      field_domain="ESRI_FIX_TYPE_DOMAIN"
+                                      )
+
+        if 'ESRIGNSS_CORRECTIONAGE' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_CORRECTIONAGE',
+                                      field_type="DOUBLE",
+                                      field_alias='Correction Age',
+                                      field_is_nullable="NULLABLE"
+                                      )
+
+        if 'ESRIGNSS_STATIONID' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_STATIONID',
+                                      field_type="SHORT",
+                                      field_alias='Station ID',
+                                      field_is_nullable="NULLABLE",
+                                      field_domain="ESRI_STATION_ID_DOMAIN"
+                                      )
+
+        if 'ESRIGNSS_NUMSATS' not in existingFields:
+            arcpy.AddField_management(feature_layer,
+                                      'ESRIGNSS_NUMSATS',
+                                      field_type="SHORT",
+                                      field_alias='Number of Satellites',
+                                      field_is_nullable="NULLABLE",
+                                      field_domain="ESRI_NUM_SATS_DOMAIN"
+                                      )
 
         if 'ESRIGNSS_PDOP' not in existingFields:
             arcpy.AddField_management(feature_layer,
@@ -308,49 +327,30 @@ def add_gnss_fields(feature_layer):
                                   field_is_nullable="NULLABLE"
                                   )
 
-        if 'ESRIGNSS_FIXTYPE' not in existingFields:
+        if 'ESRIGNSS_DIRECTION' not in existingFields:
             arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_FIXTYPE',
-                                      field_type="SHORT",
-                                      field_alias='Fix Type',
-                                      field_is_nullable="NULLABLE",
-                                      field_domain = "ESRI_FIX_TYPE_DOMAIN"                                      
-                                      )
-                
-        if 'ESRIGNSS_CORRECTIONAGE' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_CORRECTIONAGE',
+                                      'ESRIGNSS_DIRECTION',
                                       field_type="DOUBLE",
-                                      field_alias='Correction Age',
+                                      field_alias='Direction of travel (°)',
                                       field_is_nullable="NULLABLE"
-                                      )                                  
-
-        if 'ESRIGNSS_STATIONID' not in existingFields:
-            arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_STATIONID',
-                                      field_type="SHORT",
-                                      field_alias='Station ID',
-                                      field_is_nullable="NULLABLE",
-                                      field_domain = "ESRI_STATION_ID_DOMAIN"
                                       )
 
-        if 'ESRIGNSS_NUMSATS' not in existingFields:
+        if 'ESRIGNSS_SPEED' not in existingFields:
             arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_NUMSATS',
-                                      field_type="SHORT",
-                                      field_alias='Number of Satellites',
-                                      field_is_nullable="NULLABLE",
-                                      field_domain="ESRI_NUM_SATS_DOMAIN"
+                                      'ESRIGNSS_SPEED',
+                                      field_type="DOUBLE",
+                                      field_alias='Speed (km/h)',
+                                      field_is_nullable="NULLABLE"
                                       )
-        
-        if 'ESRIGNSS_FIXDATETIME' not in existingFields:
+
+        if 'ESRISNSR_AZIMUTH' not in existingFields:
             arcpy.AddField_management(feature_layer,
-                                      'ESRIGNSS_FIXDATETIME',
-                                      field_type="Date",
-                                      field_alias='Fix Time',
-                                      field_is_nullable="NULLABLE",
-                                      )
-        
+                                      'ESRISNSR_AZIMUTH',
+                                      field_type="DOUBLE",
+                                      field_alias='Compass reading (°)',
+                                      field_is_nullable="NULLABLE"
+                                          )
+
         if 'ESRIGNSS_AVG_H_RMS' not in existingFields:
             arcpy.AddField_management(feature_layer,
                                       'ESRIGNSS_AVG_H_RMS',
