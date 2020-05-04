@@ -3,24 +3,24 @@ Supported in ArcGIS Pro 2.0+ - requires Python API version 1.4.2+  - https://dev
 
 | Field name | Alias | Format |
 |---|---|---|
-| ESRIGNSS_DIRECTION | Direction of travel (°) | 2 decimal places |
-| ESRIGNSS_SPEED | Speed (km/h) | 2 decimal places |
-| ESRISNSR_AZIMUTH | Compass reading (°) | 2 decimal places |
 | ESRIGNSS_POSITIONSOURCETYPE | Position source type | NA |
 | ESRIGNSS_RECEIVER | Receiver Name | NA |
-| ESRIGNSS_H_RMS | Horizontal Accuracy (m) | 2 decimal places |
-| ESRIGNSS_V_RMS | Vertical Accuracy (m) | 2 decimal places |
 | ESRIGNSS_LATITUDE | Latitude | 8 decimal places |
 | ESRIGNSS_LONGITUDE | Longitude | 8 decimal places |
 | ESRIGNSS_ALTITUDE | Altitude | 2 decimal places |
-| ESRIGNSS_PDOP | PDOP | 2 decimal places |
-| ESRIGNSS_HDOP | HDOP | 2 decimal places |
-| ESRIGNSS_VDOP | VDOP | 2 decimal places |
+| ESRIGNSS_H_RMS | Horizontal Accuracy (m) | 2 decimal places |
+| ESRIGNSS_V_RMS | Vertical Accuracy (m) | 2 decimal places |
+| ESRIGNSS_FIXDATETIME | Fix Time | ShortDateTime, 12hr |
 | ESRIGNSS_FIXTYPE | Fix Type | NA |
 | ESRIGNSS_CORRECTIONAGE | Correction Age (seconds) | 0 decimal places |
 | ESRIGNSS_STATIONID | Station ID | NA |
 | ESRIGNSS_NUMSATS | Number of Satellites | NA |
-| ESRIGNSS_FIXDATETIME | Fix Time | ShortDateTime, 12hr |
+| ESRIGNSS_PDOP | PDOP | 2 decimal places |
+| ESRIGNSS_HDOP | HDOP | 2 decimal places |
+| ESRIGNSS_VDOP | VDOP | 2 decimal places |
+| ESRIGNSS_DIRECTION | Direction of travel (°) | 2 decimal places |
+| ESRIGNSS_SPEED | Speed (km/h) | 2 decimal places |
+| ESRISNSR_AZIMUTH | Compass reading (°) | 2 decimal places |
 | ESRIGNSS_AVG_H_RMS | Average Horizontal Accuracy (m) | 2 decimal places |
 | ESRIGNSS_AVG_V_RMS | Average Vertical Accuracy (m) | 2 decimal places |
 | ESRIGNSS_AVG_POSITIONS | Averaged Positions | NA |

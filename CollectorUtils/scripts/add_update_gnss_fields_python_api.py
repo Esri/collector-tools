@@ -79,45 +79,6 @@ def searchItems_addGNSSMetadataFields(args_parser):
         # Add/Update GNSS Metadata fields
         if not args_parser.remove:
 
-            # ESRIGNSS_DIRECTION
-            directionField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_DIRECTION']
-
-            if not directionField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_DIRECTION',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'Direction of travel (°)',
-                                                     'sqlType': 'sqlTypeOther',
-                                                     'nullable': True,
-                                                     'editable': True,
-                                                     'domain': None,
-                                                     'defaultValue': None})
-
-            # ESRIGNSS_SPEED
-            speedField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_SPEED']
-
-            if not speedField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_SPEED',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'Speed (km/h)',
-                                                     'sqlType': 'sqlTypeOther',
-                                                     'nullable': True,
-                                                     'editable': True,
-                                                     'domain': None,
-                                                     'defaultValue': None})
-
-            # ESRISNSR_AZIMUTH
-            azimuthField = [field for field in featureLayerFields if field['name'] == 'ESRISNSR_AZIMUTH']
-
-            if not azimuthField:
-                gnssMetadataFields['fields'].append({'name': 'ESRISNSR_AZIMUTH',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'Compass reading (°)',
-                                                     'sqlType': 'sqlTypeOther',
-                                                     'nullable': True,
-                                                     'editable': True,
-                                                     'domain': None,
-                                                     'defaultValue': None})
-
             # ESRIGNSS_POSITIONSOURCETYPE
             positionsourcetypeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_POSITIONSOURCETYPE']
 
@@ -169,31 +130,6 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                      'domain': None,
                                                      'defaultValue': None})
 
-            # ESRIGNSS_H_RMS
-            horizontalAccuracyField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_H_RMS']
-
-            if not horizontalAccuracyField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_H_RMS',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'Horizontal Accuracy (m)',
-                                                     'sqlType': 'sqlTypeOther',
-                                                     'nullable': True,
-                                                     'editable': True,
-                                                     'domain': None,
-                                                     'defaultValue': None})
-            # ESRIGNSS_V_RMS
-            verticalAccuracyField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_V_RMS']
-
-            if not verticalAccuracyField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_V_RMS',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'Vertical Accuracy (m)',
-                                                     'sqlType': 'sqlTypeOther',
-                                                     'nullable': True,
-                                                     'editable': True,
-                                                     'domain': None,
-                                                     'defaultValue': None})
-
             # ESRIGNSS_LATITUDE
             latitudeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_LATITUDE']
 
@@ -232,40 +168,41 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                      'editable': True,
                                                      'domain': None,
                                                      'defaultValue': None})
-            # ESRIGNSS_PDOP
-            pdopField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_PDOP']
 
-            if not pdopField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_PDOP',
+            # ESRIGNSS_H_RMS
+            horizontalAccuracyField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_H_RMS']
+
+            if not horizontalAccuracyField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_H_RMS',
                                                      'type': 'esriFieldTypeDouble',
-                                                     'alias': 'PDOP',
+                                                     'alias': 'Horizontal Accuracy (m)',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+            # ESRIGNSS_V_RMS
+            verticalAccuracyField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_V_RMS']
+
+            if not verticalAccuracyField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_V_RMS',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Vertical Accuracy (m)',
                                                      'sqlType': 'sqlTypeOther',
                                                      'nullable': True,
                                                      'editable': True,
                                                      'domain': None,
                                                      'defaultValue': None})
 
-            # ESRIGNSS_HDOP
-            hdopField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_HDOP']
+            # ESRIGNSS_FIXDATETIME
+            fixTimeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXDATETIME']
 
-            if not hdopField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_HDOP',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'HDOP',
+            if not fixTimeField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_FIXDATETIME',
+                                                     'type': 'esriFieldTypeDate',
+                                                     'alias': 'Fix Time',
                                                      'sqlType': 'sqlTypeOther',
-                                                     'nullable': True,
-                                                     'editable': True,
-                                                     'domain': None,
-                                                     'defaultValue': None})
-
-            # ESRIGNSS_VDOP
-            vdopField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_VDOP']
-
-            if not vdopField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_VDOP',
-                                                     'type': 'esriFieldTypeDouble',
-                                                     'alias': 'VDOP',
-                                                     'sqlType': 'sqlTypeOther',
+                                                     'length': 0,
                                                      'nullable': True,
                                                      'editable': True,
                                                      'domain': None,
@@ -300,11 +237,12 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                      'editable': True,
                                                      'domain': {'type': 'codedValue',
                                                                 'name': 'ESRI_FIX_TYPE_DOMAIN',
-                                                                'codedValues': [{'name': 'Fix not valid', 'code': 0},
-                                                                                {'name': 'GPS', 'code': 1},
-                                                                                {'name': 'Differential GPS', 'code': 2},
-                                                                                {'name': 'RTK Fixed', 'code': 4},
-                                                                                {'name': 'RTK Float', 'code': 5}]},
+                                                                'codedValues': [
+                                                                    {'name': 'Fix not valid', 'code': 0},
+                                                                    {'name': 'GPS', 'code': 1},
+                                                                    {'name': 'Differential GPS', 'code': 2},
+                                                                    {'name': 'RTK Fixed', 'code': 4},
+                                                                    {'name': 'RTK Float', 'code': 5}]},
                                                      'defaultValue': None})
 
             # ESRIGNSS_CORRECTIONAGE
@@ -373,15 +311,79 @@ def searchItems_addGNSSMetadataFields(args_parser):
                                                                 'range': [0, 99]},
                                                      'defaultValue': None})
 
-            # ESRIGNSS_FIXDATETIME
-            fixTimeField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_FIXDATETIME']
+            # ESRIGNSS_PDOP
+            pdopField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_PDOP']
 
-            if not fixTimeField:
-                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_FIXDATETIME',
-                                                     'type': 'esriFieldTypeDate',
-                                                     'alias': 'Fix Time',
+            if not pdopField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_PDOP',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'PDOP',
                                                      'sqlType': 'sqlTypeOther',
-                                                     'length': 0,
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRIGNSS_HDOP
+            hdopField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_HDOP']
+
+            if not hdopField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_HDOP',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'HDOP',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRIGNSS_VDOP
+            vdopField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_VDOP']
+
+            if not vdopField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_VDOP',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'VDOP',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+                
+            # ESRIGNSS_DIRECTION
+            directionField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_DIRECTION']
+
+            if not directionField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_DIRECTION',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Direction of travel (°)',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRIGNSS_SPEED
+            speedField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_SPEED']
+
+            if not speedField:
+                gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_SPEED',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Speed (km/h)',
+                                                     'sqlType': 'sqlTypeOther',
+                                                     'nullable': True,
+                                                     'editable': True,
+                                                     'domain': None,
+                                                     'defaultValue': None})
+
+            # ESRISNSR_AZIMUTH
+            azimuthField = [field for field in featureLayerFields if field['name'] == 'ESRISNSR_AZIMUTH']
+
+            if not azimuthField:
+                gnssMetadataFields['fields'].append({'name': 'ESRISNSR_AZIMUTH',
+                                                     'type': 'esriFieldTypeDouble',
+                                                     'alias': 'Compass reading (°)',
+                                                     'sqlType': 'sqlTypeOther',
                                                      'nullable': True,
                                                      'editable': True,
                                                      'domain': None,
