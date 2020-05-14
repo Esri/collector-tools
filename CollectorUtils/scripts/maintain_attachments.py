@@ -35,7 +35,7 @@ def enable_copy_attachments(input_fc, output_fc):
         if not arcpy.Exists(input_attachment_table):
             arcpy.AddMessage("Unable to locate the attachment table for the input feature class.")
 
-    if arcpy.Exists(input_attachment_table):
+    else:
 
         # Enable Attachments
         arcpy.AddMessage("Enabling Attachments")
