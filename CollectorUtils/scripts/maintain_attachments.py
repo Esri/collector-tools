@@ -26,6 +26,12 @@ def main():
 
 
 def enable_copy_attachments(input_fc, output_fc):
+    # Check if the output feature class has attachments table 
+    output_attachment_table = output_fc + '__ATTACH'
+    if arcpy.Exists(output_attachment_table):
+        arcpy.AddMessage("Output feature class layer already includes attachments.")
+        exit()
+
     # Check if the input feature class has attachments table
     input_attachment_table = input_fc + '__ATTACH'
     if not arcpy.Exists(input_attachment_table):
