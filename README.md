@@ -1,6 +1,6 @@
 A set of utilities to help configure web maps and feature layers for use with Collector for ArcGIS. Browse the sections below, or jump to a specific section.
 
-`NOTE`: Many of the scripts, notebooks, and toolboxes can be applied to `ArcGIS Field Maps` also. 
+**Note: Many of the scripts, notebooks, and toolboxes can also be applied to `ArcGIS Field Maps`.** 
 
 [Notebooks](#notebooks)
 
