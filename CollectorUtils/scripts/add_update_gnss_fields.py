@@ -97,23 +97,6 @@ def check_and_create_domains(geodatabase):
                                       split_policy="DEFAULT",
                                       merge_policy="DEFAULT")
         arcpy.SetValueForRangeDomain_management(geodatabase, "ESRI_NUM_SATS_DOMAIN", 0, 99)
-    # Check if 'StationID" is a domain, if so check the range
-    if 'ESRI_STATION_ID_DOMAIN' in domain_names:
-        if domain.name == "ESRI_STATION_ID_DOMAIN":
-            if domain.range[0] != 0 or domain.range[1] != 1023:
-                arcpy.AddError("ESRI_STATION_ID_DOMAIN domain has invalid range")
-                return
-    else:
-        # Add the domain and set the range
-        arcpy.AddMessage("Adding ESRI_STATION_ID_DOMAIN to parent database...")
-        arcpy.CreateDomain_management(in_workspace=geodatabase,
-                                      domain_name="ESRI_STATION_ID_DOMAIN",
-                                      domain_description="Station ID",
-                                      field_type="SHORT",
-                                      domain_type="RANGE",
-                                      split_policy="DEFAULT",
-                                      merge_policy="DEFAULT")
-        arcpy.SetValueForRangeDomain_management(geodatabase, "ESRI_STATION_ID_DOMAIN", 0, 1023)
     if 'ESRI_POSITIONSOURCETYPE_DOMAIN' in domain_names:
         for domain in domains:
             if domain.name == 'ESRI_POSITIONSOURCETYPE_DOMAIN':
@@ -290,8 +273,7 @@ def add_gnss_fields(feature_layer):
                                       'ESRIGNSS_STATIONID',
                                       field_type="SHORT",
                                       field_alias='Station ID',
-                                      field_is_nullable="NULLABLE",
-                                      field_domain="ESRI_STATION_ID_DOMAIN"
+                                      field_is_nullable="NULLABLE"
                                       )
 
         if 'ESRIGNSS_NUMSATS' not in existingFields:
@@ -395,10 +377,6 @@ def add_gnss_fields(feature_layer):
         for field in domainFields:
             if field.name == 'ESRIGNSS_FIXTYPE' and not field.domain:
                 arcpy.AssignDomainToField_management(feature_layer, field, 'ESRI_FIX_TYPE_DOMAIN')
-                continue
-            
-            if field.name == 'ESRIGNSS_STATIONID' and not field.domain:
-                arcpy.AssignDomainToField_management(feature_layer, field, 'ESRI_STATION_ID_DOMAIN')
                 continue
             
             if field.name == 'ESRIGNSS_NUMSATS' and not field.domain:
