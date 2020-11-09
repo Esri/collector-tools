@@ -262,27 +262,14 @@ def searchItems_addGNSSMetadataFields(args_parser):
             # ESRIGNSS_STATIONID
             stationIdField = [field for field in featureLayerFields if field['name'] == 'ESRIGNSS_STATIONID']
 
-            if stationIdField:
-                # Field does exist check if the domain is set.
-                if stationIdField[0]['domain'] == None:
-                    if ([operation for operation in operations if operation == 'updateDefinition']):
-                        operations.append('updateDefinition')
-                    stationIdFieldIndex = featureLayerFields.index(stationIdField[0])
-                    stationIdDomain = {'type': 'range',
-                                       'name': 'ESRI_STATION_ID_DOMAIN',
-                                       'range': [0, 1023]}
-                    featureLayerFields[stationIdFieldIndex]['domain'] = stationIdDomain
-
-            else:
+            if not stationIdField:
                 gnssMetadataFields['fields'].append({'name': 'ESRIGNSS_STATIONID',
                                                      'type': 'esriFieldTypeInteger',
                                                      'alias': 'Station ID',
                                                      'sqlType': 'sqlTypeOther',
                                                      'nullable': True,
                                                      'editable': True,
-                                                     'domain': {'type': 'range',
-                                                                'name': 'ESRI_STATION_ID_DOMAIN',
-                                                                'range': [0, 1023]},
+                                                     'domain': None,
                                                      'defaultValue': None})
 
             # ESRIGNSS_NUMSATS
