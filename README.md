@@ -75,7 +75,7 @@ Toolbox instructions
 
 Although we do our best to ensure these scripts, notebooks, and toolboxes work as expected, they are provided as is and there is no official support.
 
-If you find a bug, please let us know by [submitting an issue](https://github.com/Esri/collector-tools/issues/new.
+If you find a bug, please let us know by [submitting an issue](https://github.com/Esri/collector-tools/issues/new).
 
 ## Contributing
 
